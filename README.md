@@ -1,13 +1,55 @@
-# Astro with Tailwind
+# Kirshway
 
-```sh
-pnpm create astro@latest -- --template with-tailwindcss
+[![Demo Site](https://img.shields.io/badge/Demo-Open_Site-brightgreen?style=for-the-badge)](https://kirshway.github.io/kirsh-about/)
+[![Astro](https://img.shields.io/badge/Astro-5.0-orange?style=for-the-badge&logo=astro)](https://astro.build/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-blue?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
+
+Modern personal website/blog built with Astro and styled with Tailwind CSS.
+
+### 🎨 Features
+
+- **Fast**: Minimal JavaScript, just static HTML where possible
+- **Modern Design**: Styled with Tailwind CSS
+- **Custom Fonts**: Uses Geist Mono and JetBrains Mono fonts
+- **Responsive**: Displays correctly on devices of any size
+- **GitHub Pages Deployment**: Automatic deployment via GitHub Actions
+
+## 📂 Project Structure
+
+```
+/
+├── .github/           # GitHub Actions configuration
+├── public/            # Static files
+├── src/
+│   ├── components/    # Astro components
+│   ├── layouts/       # Layout templates
+│   ├── pages/         # Site pages
+│   └── styles/        # CSS styles
+└── astro.config.mjs   # Astro configuration
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/with-tailwindcss/devcontainer.json)
+## 🧞 Commands
 
-Astro comes with [Tailwind](https://tailwindcss.com) support out of the box. This example showcases how to style your Astro project with Tailwind.
+All commands are run from the root of the project, from a terminal:
 
-For complete setup instructions, please see our [Tailwind Integration Guide](https://docs.astro.build/en/guides/integrations-guide/tailwind).
+| Command            | Action                                          |
+| :----------------- | :---------------------------------------------- |
+| `npm install`      | Installs dependencies                           |
+| `npm run dev`      | Starts local dev server at `localhost:4321`     |
+| `npm run build`    | Build your production site to `./dist/`         |
+| `npm run preview`  | Preview your build locally before deploying     |
+
+## 🧪 Technologies
+
+- [Astro](https://astro.build)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Fontsource](https://fontsource.org/) - for font loading
+- [GitHub Pages](https://pages.github.com/) - for hosting
+
+## 📝 License
+
+MIT
+
+---
+
+*Created with ❤️ using Astro*
