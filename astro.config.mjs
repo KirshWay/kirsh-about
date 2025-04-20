@@ -2,12 +2,10 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
-const isProduction = import.meta.env?.MODE === 'production';
-
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://kirshway.github.io',
-	base: isProduction ? '/kirsh-about' : '',
+	base: import.meta.env.PROD ? '/kirsh-about' : '',
 	vite: {
 		plugins: [tailwindcss()]
 	}

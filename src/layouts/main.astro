@@ -4,24 +4,24 @@ import "@fontsource/geist-mono/700.css";
 import "@fontsource/jetbrains-mono/400.css";
 import "@fontsource/jetbrains-mono/700.css";
 import "../styles/global.css";
-const { content } = Astro.props;
 
-const baseUrl = import.meta.env.BASE_URL;
+import { getUrl } from "../utils";
+
+const { content } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <base href={baseUrl} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={getUrl("favicon.svg")} />
     <meta name="generator" content={Astro.generator} />
     <title>{content.title}</title>
   </head>
   <body>
     <header>
-      <a href="/">Home</a>
-      <a href="/blog">Blog</a>
+      <a href={getUrl("")}>Home</a>
+      <a href={getUrl("blog")}>Blog</a>
     </header>
 
     <slot />

@@ -22,9 +22,11 @@ Modern personal website/blog built with Astro and styled with Tailwind CSS.
 ├── public/            # Static files
 ├── src/
 │   ├── components/    # Astro components
+│   ├── constants/     # General constants
 │   ├── layouts/       # Layout templates
 │   ├── pages/         # Site pages
-│   └── styles/        # CSS styles
+│   ├── styles/        # CSS styles
+│   └── utils/         # Utilities
 └── astro.config.mjs   # Astro configuration
 ```
 
