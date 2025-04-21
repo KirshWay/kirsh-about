@@ -21,6 +21,7 @@ Modern personal website/blog built with Astro and styled with Tailwind CSS.
 ├── .github/           # GitHub Actions configuration
 ├── public/            # Static files
 ├── src/
+│   ├── assets/        # Resources processed by the builder (icons, fonts)
 │   ├── components/    # Astro components
 │   ├── constants/     # General constants
 │   ├── layouts/       # Layout templates
