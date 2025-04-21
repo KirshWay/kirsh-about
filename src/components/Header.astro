@@ -1,5 +1,5 @@
 ---
-import { getUrl } from "../utils";
+import { getUrl, normalizePath } from "../utils";
 
 const currentUrl = Astro.url.pathname;
 
@@ -10,6 +10,8 @@ const navLinks = [
   { href: getUrl("cinema"), label: "Cinema" },
   { href: getUrl("games"), label: "Games" },
 ];
+
+const normalizedCurrentUrl = normalizePath(currentUrl);
 ---
 
 <header class="py-6">
@@ -18,16 +20,21 @@ const navLinks = [
   >
     <ul class="flex items-center gap-4 list-none">
       {
-        navLinks.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class={`link-style ${link.href === currentUrl ? "no-underline" : ""}`}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))
+        navLinks.map((link) => {
+          const normalizedLinkHref = normalizePath(link.href);
+          const isActive = normalizedLinkHref === normalizedCurrentUrl;
+
+          return (
+            <li>
+              <a
+                href={link.href}
+                class={`link-style ${isActive ? "no-underline" : ""}`}
+              >
+                {link.label}
+              </a>
+            </li>
+          );
+        })
       }
     </ul>
   </nav>
