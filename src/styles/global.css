@@ -12,6 +12,14 @@ body {
   @apply antialiased max-w-3xl mt-8 mx-auto text-[#fbf1c7] bg-[#282828];
 }
 
+.link-style {
+  @apply underline underline-offset-4 text-[#e0d6c3] transition-colors duration-200 hover:text-[#a18fc6];
+}
+
+a.no-underline {
+  @apply no-underline;
+}
+
 body::after {
   content: "";
   position: fixed;
@@ -24,4 +32,11 @@ body::after {
   background-repeat: repeat;
   pointer-events: none;
   z-index: 9999;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
 }

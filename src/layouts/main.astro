@@ -3,7 +3,10 @@ import "@fontsource/geist-mono/400.css";
 import "@fontsource/geist-mono/700.css";
 import "@fontsource/jetbrains-mono/400.css";
 import "@fontsource/jetbrains-mono/700.css";
+
 import "../styles/global.css";
+
+import Header from "../components/Header.astro";
 
 import { getUrl } from "../utils";
 
@@ -19,10 +22,7 @@ const { content } = Astro.props;
     <title>{content.title}</title>
   </head>
   <body>
-    <header>
-      <a href={getUrl("")}>Home</a>
-      <a href={getUrl("blog")}>Blog</a>
-    </header>
+    <Header />
 
     <slot />
   </body>
