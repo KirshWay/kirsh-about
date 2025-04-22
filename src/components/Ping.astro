@@ -1,5 +1,5 @@
 ---
-type Variant = "main" | "green" | "gray";
+export type Variant = "main" | "green" | "gray" | "yellow";
 
 type Props = {
   variant: Variant;
@@ -18,6 +18,10 @@ const variantStyles: Record<
   green: {
     pingBgClass: "bg-[#72bd85]",
     dotBgClass: "bg-[#72bd85]",
+  },
+  yellow: {
+    pingBgClass: "bg-[#e9d75a]",
+    dotBgClass: "bg-[#e9d75a]",
   },
   gray: {
     pingBgClass: "bg-gray-300",

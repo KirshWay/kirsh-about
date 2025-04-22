@@ -6,6 +6,8 @@ import "@fontsource/jetbrains-mono/700.css";
 
 import "../styles/global.css";
 
+import { ClientRouter, slide } from "astro:transitions";
+
 import Header from "../components/Header.astro";
 
 import { getUrl } from "../utils";
@@ -13,17 +15,20 @@ import { getUrl } from "../utils";
 const { content } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" transition:animate="none">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href={getUrl("favicon.svg")} />
     <meta name="generator" content={Astro.generator} />
     <title>{content.title}</title>
+    <ClientRouter />
   </head>
   <body>
     <Header />
 
-    <slot />
+    <main transition:animate={slide({ duration: "0.5s" })}>
+      <slot />
+    </main>
   </body>
 </html>

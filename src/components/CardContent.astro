@@ -1,0 +1,99 @@
+---
+import { Image } from "astro:assets";
+import StarRating from "./StarRating.astro";
+import type { ListItem } from "../data/media";
+import Ping, { type Variant } from "./Ping.astro";
+import type { ImageMetadata } from "astro";
+import { getUrl } from "../utils";
+
+const { item, isAboveFold = false }: Props = Astro.props;
+
+type Props = {
+  item: ListItem;
+  isAboveFold?: boolean;
+};
+
+type Status = typeof item.status;
+
+const localImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/images/**/*.{jpeg,jpg,png,gif,webp}"
+);
+
+const isLocalImage = item.image && item.image.startsWith("/src/assets/");
+
+let imgSrcForStandardTag = item.image;
+
+if (item.image && !isLocalImage && !item.image.startsWith("http")) {
+  imgSrcForStandardTag = getUrl(item.image);
+}
+
+const getVariantByStatus = (status: Status): Variant => {
+  switch (status) {
+    case "completed":
+      return "green";
+    case "in progress":
+      return "yellow";
+    default:
+      return "gray";
+  }
+};
+
+const badgeVariant = getVariantByStatus(item.status);
+---
+
+<div
+  class="bg-[#655953] p-3 rounded-xl transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1"
+>
+  <div class="flex flex-col gap-2">
+    {
+      item.image && (
+        <div class="overflow-hidden rounded-lg">
+          {isLocalImage ? (
+            <Image
+              src={localImages[item.image]()}
+              alt={item.title}
+              width={300}
+              height={200}
+              loading={isAboveFold ? "eager" : "lazy"}
+              class="w-full h-auto object-cover"
+            />
+          ) : (
+            <img
+              src={imgSrcForStandardTag}
+              alt={item.title}
+              width="300"
+              height="200"
+              loading={isAboveFold ? "eager" : "lazy"}
+              class="w-full h-auto object-cover"
+            />
+          )}
+        </div>
+      )
+    }
+
+    <div class="flex flex-col gap-2 py-4">
+      <p class="text-md font-medium text-[#a77fc5]">{item.title}</p>
+
+      <div class="flex items-center gap-2">
+        <Ping variant={badgeVariant} />
+        <p class="text-sm opacity-80">{item.status}</p>
+      </div>
+
+      {
+        item.year && (
+          <p class="text-sm opacity-80">Year released: {item.year}</p>
+        )
+      }
+
+      {item.rating && <StarRating rating={item.rating} />}
+
+      {item.review && <p class="text-sm mt-1">{item.review}</p>}
+
+      {
+        item.recommendationEmoji && (
+          <p class="text-sm mt-1">{item.recommendationEmoji}</p>
+        )
+      }
+    </div>
+  </div>
+</div>
