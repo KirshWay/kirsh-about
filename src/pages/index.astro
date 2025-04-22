@@ -6,6 +6,7 @@ import TelegramIcon from "../assets/icons/telegram.svg";
 import XIcon from "../assets/icons/x.svg";
 
 import AsciiImage from "../components/AsciiImage.astro";
+import Ping from "../components/Ping.astro";
 import Layout from "../layouts/main.astro";
 
 import { getUrl } from "../utils";
@@ -21,22 +22,16 @@ import { getUrl } from "../utils";
           <p class="text-lg font-semibold text-[#888]">Viktor Nemets</p>
 
           <div class="flex items-center gap-2">
-            <span class="relative flex h-2 w-2">
-              <span
-                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#a77fc5] opacity-75"
-              ></span>
-              <span
-                class="relative inline-flex rounded-full h-2 w-2 bg-[#a77fc5]"
-              ></span>
-            </span>
+            <Ping variant="main" />
+
             <p class="text-[#a77fc5] text-sm">
               Working on interesting projects
             </p>
           </div>
 
           <p class="text-sm">
-            Graduate with a degree in “Information Systems and Technologies”.
-            I’m passionate about technology and reading, occasionally getting
+            Graduate with a degree in "Information Systems and Technologies".
+            I'm passionate about technology and reading, occasionally getting
             immersed in books or gaming.
           </p>
         </div>
@@ -61,6 +56,7 @@ import { getUrl } from "../utils";
           <p class="text-2xl font-semibold mb-6 text-[#a77fc5]">Projects</p>
           <a
             href="https://github.com/KirshWay"
+            class="link-style"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -73,20 +69,130 @@ import { getUrl } from "../utils";
       </div>
 
       <section class="flex flex-col gap-2 my-8">
-        <p class="text-2xl font-semibold mb-6 text-[#a77fc5]">Coding stats</p>
-        <Image width={72} height={72} src={getUrl("meme.gif")} alt="meme" />
+        <p class="text-2xl font-semibold mb-2 text-[#a77fc5]">Coding stats</p>
+
+        <div
+          class="grid grid-cols-2 grid-rows-2 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-4 md:grid-rows-1 gap-2"
+        >
+          <div
+            class="flex flex-col w-full p-4 rounded-md text-gray-300 bg-[#655953] border-2 border-[#a77fc5] transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1 hover:border-[#c099e6] h-full"
+          >
+            <span class="text-sm text-[#a77fc5] font-semibold">
+              Main editor
+            </span>
+
+            <span class="font-semibold text-xl">Cursor AI</span>
+          </div>
+          <div
+            class="flex flex-col w-full p-4 rounded-md text-gray-300 bg-[#655953] border-2 border-[#a77fc5] transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1 hover:border-[#c099e6] h-full"
+          >
+            <span class="text-sm text-[#a77fc5] font-semibold">
+              Second editor
+            </span>
+
+            <span class="font-semibold text-xl">Zed editor</span>
+          </div>
+          <div
+            class="flex flex-col w-full p-4 rounded-md text-gray-300 bg-[#655953] border-2 border-[#a77fc5] transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1 hover:border-[#c099e6] h-full"
+          >
+            <span class="text-sm text-[#a77fc5] font-semibold">
+              Main frontend framework
+            </span>
+
+            <span class="font-semibold text-xl">React + Next.js</span>
+          </div>
+          <div
+            class="flex flex-col w-full p-4 rounded-md text-gray-300 bg-[#655953] border-2 border-[#a77fc5] transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1 hover:border-[#c099e6] h-full"
+          >
+            <span class="text-sm text-[#a77fc5] font-semibold">
+              Main backend framework
+            </span>
+
+            <span class="font-semibold text-xl">Nest.js</span>
+          </div>
+        </div>
+
+        <div class="bg-[#655953] p-2 rounded-xl">
+          <img
+            src="https://github-readme-stats.vercel.app/api/top-langs/?username=KirshWay&layout=compact&theme=gruvbox&hide_border=true&bg_color=3c3836&title_color=a77fc5&text_color=fbf1c7"
+            alt="Most used languages"
+            width="100%"
+            height="auto"
+          />
+        </div>
       </section>
 
       <section class="flex flex-col gap-2 my-8">
-        <p class="text-2xl font-semibold mb-6 text-[#a77fc5]">Socials</p>
+        <p class="text-2xl font-semibold mb-2 text-[#a77fc5]">
+          Professional Development
+        </p>
 
-        <ul class="flex gap-6 p-2 bg-[#655953] rounded-xl">
+        <div>
+          <Image
+            width={40}
+            height={40}
+            src={getUrl("meme.gif")}
+            priority
+            loading="eager"
+            fetchpriority="high"
+            alt="meme"
+          />
+
+          <div class="bg-[#655953] p-6 rounded-xl">
+            <div class="my-4 grid grid-cols-1 gap-8 md:grid-cols-2">
+              <div>
+                <span class="font-semibold text-xl">
+                  Topical skills and training
+                </span>
+
+                <ul class="flex flex-col gap-2 mt-4">
+                  <li class="flex gap-2 items-center">
+                    <Ping variant="green" />
+                    <span>Team Leadership</span>
+                  </li>
+                  <li class="flex gap-2 items-center">
+                    <Ping variant="green" />
+                    <span>Docker + CI/CD</span>
+                  </li>
+                  <li class="flex gap-2 items-center">
+                    <Ping variant="green" />
+                    <span>Astro</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <span class="font-semibold text-xl">
+                  Future areas of interest
+                </span>
+
+                <ul class="flex flex-col gap-2 mt-4">
+                  <li class="flex gap-2 items-center">
+                    <Ping variant="gray" />
+                    <span>tRPC</span>
+                  </li>
+                  <li class="flex gap-2 items-center">
+                    <Ping variant="gray" />
+                    <span>Hono.js</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="flex flex-col gap-2 my-8">
+        <p class="text-2xl font-semibold mb-2 text-[#a77fc5]">Socials</p>
+
+        <ul class="flex gap-6 p-4 bg-[#655953] rounded-xl">
           <li>
             <a
               href="https://t.me/KirshWay"
               class="link-style"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Telegram"
             >
               <TelegramIcon width="24" height="24" />
             </a>
@@ -97,6 +203,7 @@ import { getUrl } from "../utils";
               class="link-style"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="X"
             >
               <XIcon width="24" height="24" />
             </a>
@@ -107,12 +214,13 @@ import { getUrl } from "../utils";
               class="link-style"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Instagram"
             >
               <InstagramIcon width="24" height="24" />
             </a>
           </li>
         </ul>
-      </section>
+      </footer>
     </div>
   </main>
 </Layout>
