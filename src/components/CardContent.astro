@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import StarRating from "./StarRating.astro";
-import type { ListItem } from "../data/media";
+import type { GameStatus, ListItem } from "../data";
 import Ping, { type Variant } from "./Ping.astro";
 import type { ImageMetadata } from "astro";
 import { getUrl } from "../utils";
@@ -12,8 +12,6 @@ type Props = {
   item: ListItem;
   isAboveFold?: boolean;
 };
-
-type Status = typeof item.status;
 
 const localImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/images/**/*.{jpeg,jpg,png,gif,webp}"
@@ -27,7 +25,7 @@ if (item.image && !isLocalImage && !item.image.startsWith("http")) {
   imgSrcForStandardTag = getUrl(item.image);
 }
 
-const getVariantByStatus = (status: Status): Variant => {
+const getVariantByStatus = (status: GameStatus): Variant => {
   switch (status) {
     case "completed":
       return "green";
@@ -42,7 +40,11 @@ const badgeVariant = getVariantByStatus(item.status);
 ---
 
 <div
-  class="bg-[#655953] p-3 rounded-xl transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1"
+  class="bg-[#655953] p-3 rounded-xl transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1 card-item"
+  data-title={item.title}
+  data-status={item.status}
+  data-year={item.year?.toString()}
+  data-rating={item.rating?.toString()}
 >
   <div class="flex flex-col gap-2">
     {

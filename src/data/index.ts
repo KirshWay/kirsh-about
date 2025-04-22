@@ -1,3 +1,5 @@
+export { gamesItems } from './gamesList';
+
 export type ListItem = {
   id: string;
   title: string;
@@ -9,12 +11,6 @@ export type ListItem = {
   recommendationEmoji?: '👍' | '😐' | '👎';
 }
 
-export const gamesItems: ListItem[] = [
-  {
-    id: 'tlou2',
-    title: 'The Last of Us 2',
-    status: 'in progress',
-    year: 2020,
-    image: '/src/assets/images/games/tlou2.jpg',
-  },
-];
+export type MediaType = 'games' | 'books' | 'cinema';
+
+export type GameStatus = 'completed' | 'in progress' | 'planned';
