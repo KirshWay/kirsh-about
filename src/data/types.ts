@@ -1,10 +1,7 @@
-export { gamesItems } from './gamesList';
-export { projectList } from './projectList';
-
 export type ListItem = {
   id: string;
   title: string;
-  status: 'completed' | 'in progress' | 'planned';
+  status: GameStatus;
   rating?: number;
   image?: string;
   year?: number;
@@ -36,4 +33,4 @@ export type Variant =
   | "black"
   | "lightBlue"
   | "lightGreen"
-  | "pink";
+  | "pink"; 

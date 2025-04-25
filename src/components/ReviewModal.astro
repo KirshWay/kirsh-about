@@ -1,0 +1,315 @@
+---
+export interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<dialog
+  id={id}
+  class="modal bg-transparent backdrop:bg-[#282828]/80 backdrop:backdrop-blur-sm p-0 rounded-xl max-w-2xl w-full fixed"
+>
+  <div
+    class="bg-[#655953] border-2 border-[#a77fc5] rounded-xl overflow-hidden shadow-xl"
+  >
+    <div class="p-4 relative">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="text-xl font-medium text-[#a77fc5] modal-title"></h3>
+        <button
+          class="close-modal text-[#fbf1c7] hover:text-[#a77fc5] transition-colors cursor-pointer"
+          aria-label="Close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-year text-sm text-[#fbf1c7] opacity-80 mb-3"></div>
+
+      <div
+        class="modal-review prose prose-invert prose-sm max-w-none text-[#fbf1c7] modal-content"
+      >
+      </div>
+
+      <div class="mt-4 text-right">
+        <div class="modal-recommendation text-2xl"></div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script is:inline define:vars={{ modalId: id }}>
+  function initModal() {
+    const setupModalClicks = () => {
+      document.body.removeEventListener("click", handleBodyClick);
+      document.body.addEventListener("click", handleBodyClick);
+    };
+
+    function handleBodyClick(e) {
+      const target = e.target;
+      const trigger = target.closest("[data-modal-trigger]");
+
+      if (!trigger) return;
+
+      e.preventDefault();
+
+      const targetModalId = trigger.getAttribute("data-modal-target");
+      if (!targetModalId) return;
+
+      const modalEl = document.getElementById(targetModalId);
+      if (!modalEl || !(modalEl instanceof HTMLDialogElement)) return;
+
+      const modalContent = trigger.getAttribute("data-modal-content");
+      if (!modalContent) return;
+
+      try {
+        const modalData = JSON.parse(modalContent);
+
+        const titleElem = modalEl.querySelector(".modal-title");
+        if (titleElem) titleElem.textContent = modalData.title || "";
+
+        const yearElem = modalEl.querySelector(".modal-year");
+        if (yearElem)
+          yearElem.textContent = modalData.year
+            ? `Year released: ${modalData.year}`
+            : "";
+
+        const reviewElem = modalEl.querySelector(".modal-review");
+        if (reviewElem) reviewElem.textContent = modalData.review || "";
+
+        const recElem = modalEl.querySelector(".modal-recommendation");
+        if (recElem) recElem.textContent = modalData.recommendationEmoji || "";
+
+        if (window.innerWidth < 768) {
+          modalEl.classList.add("mobile-modal");
+        } else {
+          modalEl.classList.remove("mobile-modal");
+        }
+
+        modalEl.showModal();
+        modalEl.classList.add("open");
+      } catch (err) {
+        console.error("Error parsing modal data:", err);
+      }
+    }
+
+    function setupModal(dialogId) {
+      if (!dialogId) return;
+
+      const modal = document.getElementById(dialogId);
+
+      if (!modal || !(modal instanceof HTMLDialogElement)) return;
+
+      const closeBtn = modal.querySelector(".close-modal");
+
+      if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+          closeModalWithAnimation(modal);
+        });
+      }
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModalWithAnimation(modal);
+        }
+      });
+    }
+
+    function closeModalWithAnimation(modal) {
+      modal.classList.remove("open");
+      modal.classList.add("closing");
+
+      setTimeout(() => {
+        modal.classList.remove("closing");
+        modal.close();
+      }, 300);
+    }
+
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        const modalEl = document.querySelector("dialog[open]");
+        if (modalEl && modalEl instanceof HTMLDialogElement) {
+          closeModalWithAnimation(modalEl);
+        }
+      }
+    };
+
+    const handleResize = () => {
+      const modalEl = document.querySelector("dialog[open]");
+      if (modalEl && modalEl instanceof HTMLDialogElement) {
+        if (window.innerWidth < 768) {
+          modalEl.classList.add("mobile-modal");
+        } else {
+          modalEl.classList.remove("mobile-modal");
+        }
+      }
+    };
+
+    document.removeEventListener("keydown", handleEscape);
+    document.addEventListener("keydown", handleEscape);
+
+    window.removeEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize);
+
+    setupModal(modalId);
+
+    document.querySelectorAll("dialog.modal").forEach((modal) => {
+      if (modal.id) {
+        setupModal(modal.id);
+      }
+    });
+
+    setupModalClicks();
+  }
+
+  document.addEventListener("DOMContentLoaded", initModal);
+
+  document.addEventListener("astro:page-load", initModal);
+</script>
+
+<style>
+  dialog {
+    padding: 0;
+    position: fixed;
+    border: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 85vh;
+    overflow: hidden;
+  }
+
+  dialog .modal-content {
+    max-height: 35vh;
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+
+  dialog::backdrop {
+    backdrop-filter: blur(4px);
+    transition: backdrop-filter 0.3s ease;
+  }
+
+  dialog[open] {
+    opacity: 0;
+  }
+
+  dialog.open {
+    animation: modal-appear-desktop 0.3s ease forwards;
+  }
+
+  dialog.closing {
+    animation: modal-disappear-desktop 0.3s ease forwards;
+  }
+
+  dialog.mobile-modal[open] {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 100%;
+    max-width: 100%;
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+
+  dialog.mobile-modal.open {
+    animation: modal-appear-mobile 0.3s ease forwards;
+  }
+
+  dialog.mobile-modal.closing {
+    animation: modal-disappear-mobile 0.3s ease forwards;
+  }
+
+  @keyframes modal-appear-desktop {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @keyframes modal-disappear-desktop {
+    from {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+  }
+
+  @keyframes modal-appear-mobile {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes modal-disappear-mobile {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    dialog {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      width: 100%;
+      max-width: 100%;
+      position: fixed;
+      bottom: 0;
+      top: auto;
+      left: 0;
+      right: 0;
+      transform: none;
+    }
+
+    dialog .modal-content {
+      max-height: 30vh;
+    }
+  }
+
+  .modal-content::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .modal-content::-webkit-scrollbar-track {
+    background: #4e4138;
+    border-radius: 3px;
+  }
+
+  .modal-content::-webkit-scrollbar-thumb {
+    background-color: #a77fc5;
+    border-radius: 3px;
+  }
+</style>

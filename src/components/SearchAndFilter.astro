@@ -282,101 +282,115 @@ const uniqueYears = [
   }
 </style>
 
-<script>
-  const customSelects = document.querySelectorAll(".custom-select-wrapper");
+<script is:inline>
+  function initFilters() {
+    const customSelects = document.querySelectorAll(".custom-select-wrapper");
+    const searchInput = document.getElementById("search-input");
+    const statusFilter = document.getElementById("status-filter");
+    const yearFilter = document.getElementById("year-filter");
+    const ratingFilter = document.getElementById("rating-filter");
+    const cardItems = document.querySelectorAll(".card-item");
 
-  customSelects.forEach((select) => {
-    const button = select.querySelector(".select-button");
-    const optionsContainer = select.querySelector(".options-container");
-    const options = select.querySelectorAll(".option");
-    const hiddenInput = select.querySelector(
-      'input[type="hidden"]'
-    ) as HTMLInputElement;
-    const selectedValue = select.querySelector(".selected-value");
+    document.removeEventListener("click", closeAllDropdowns);
 
-    if (!button || !optionsContainer || !hiddenInput || !selectedValue) return;
+    function closeAllDropdowns() {
+      customSelects.forEach((select) => {
+        const container = select.querySelector(".options-container");
+        if (container) container.classList.add("hidden");
+      });
+    }
 
-    function closeAllSelectsExcept(currentSelect: Element) {
-      customSelects.forEach((otherSelect) => {
-        if (otherSelect !== currentSelect) {
-          const container = otherSelect.querySelector(".options-container");
-          container?.classList.add("hidden");
+    document.addEventListener("click", closeAllDropdowns);
+
+    customSelects.forEach((select) => {
+      const button = select.querySelector(".select-button");
+      const optionsContainer = select.querySelector(".options-container");
+      const options = select.querySelectorAll(".option");
+      const hiddenInput = select.querySelector('input[type="hidden"]');
+      const selectedValue = select.querySelector(".selected-value");
+
+      if (!button || !optionsContainer || !hiddenInput || !selectedValue)
+        return;
+
+      button.removeEventListener("click", button.clickHandler);
+
+      button.clickHandler = function (e) {
+        e.stopPropagation();
+        const isHidden = optionsContainer.classList.contains("hidden");
+
+        customSelects.forEach((otherSelect) => {
+          if (otherSelect !== select) {
+            const container = otherSelect.querySelector(".options-container");
+            if (container) container.classList.add("hidden");
+          }
+        });
+
+        if (isHidden) {
+          optionsContainer.classList.remove("hidden");
+        } else {
+          optionsContainer.classList.add("hidden");
+        }
+      };
+
+      button.addEventListener("click", button.clickHandler);
+
+      options.forEach((option) => {
+        option.removeEventListener("click", option.clickHandler);
+
+        option.clickHandler = function () {
+          const value = option.getAttribute("data-value") || "";
+          const text = option.textContent ? option.textContent.trim() : "";
+
+          hiddenInput.value = value;
+          selectedValue.textContent = text;
+          optionsContainer.classList.add("hidden");
+
+          filterItems();
+        };
+
+        option.addEventListener("click", option.clickHandler);
+      });
+    });
+
+    function filterItems() {
+      const searchTerm = searchInput?.value.toLowerCase() || "";
+      const statusValue = statusFilter?.value || "";
+      const yearValue = yearFilter?.value || "";
+      const ratingValue = parseInt(ratingFilter?.value || "0");
+
+      cardItems.forEach((item) => {
+        const card = item;
+        const title = card.dataset.title?.toLowerCase() || "";
+        const status = card.dataset.status || "";
+        const year = card.dataset.year || "";
+        const rating = parseInt(card.dataset.rating || "0");
+
+        const matchesSearch = title.includes(searchTerm);
+        const matchesStatus = statusValue === "" || status === statusValue;
+        const matchesYear = yearValue === "" || year === yearValue;
+        const matchesRating = ratingValue === 0 || rating >= ratingValue;
+
+        if (matchesSearch && matchesStatus && matchesYear && matchesRating) {
+          card.style.display = "block";
+          card.style.animation = "fadeIn 0.3s ease-in-out";
+        } else {
+          card.style.display = "none";
         }
       });
     }
 
-    button.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const isHidden = optionsContainer.classList.contains("hidden");
+    if (searchInput) {
+      searchInput.removeEventListener("input", searchInput.inputHandler);
 
-      closeAllSelectsExcept(select);
-
-      if (isHidden) {
-        optionsContainer.classList.remove("hidden");
-      } else {
-        optionsContainer.classList.add("hidden");
-      }
-    });
-
-    options.forEach((option) => {
-      option.addEventListener("click", () => {
-        const value = option.getAttribute("data-value") || "";
-        const text = option.textContent || "";
-
-        hiddenInput.value = value;
-        selectedValue.textContent = text;
-        optionsContainer.classList.add("hidden");
-
+      searchInput.inputHandler = function () {
         filterItems();
-      });
-    });
-  });
+      };
 
-  document.addEventListener("click", () => {
-    customSelects.forEach((select) => {
-      const container = select.querySelector(".options-container");
-      container?.classList.add("hidden");
-    });
-  });
-
-  const searchInput = document.getElementById(
-    "search-input"
-  ) as HTMLInputElement;
-  const statusFilter = document.getElementById(
-    "status-filter"
-  ) as HTMLInputElement;
-  const yearFilter = document.getElementById("year-filter") as HTMLInputElement;
-  const ratingFilter = document.getElementById(
-    "rating-filter"
-  ) as HTMLInputElement;
-  const cardItems = document.querySelectorAll(".card-item");
-
-  function filterItems() {
-    const searchTerm = searchInput?.value.toLowerCase() || "";
-    const statusValue = statusFilter?.value || "";
-    const yearValue = yearFilter?.value || "";
-    const ratingValue = parseInt(ratingFilter?.value || "0");
-
-    cardItems.forEach((item) => {
-      const card = item as HTMLElement;
-      const title = card.dataset.title?.toLowerCase() || "";
-      const status = card.dataset.status || "";
-      const year = card.dataset.year || "";
-      const rating = parseInt(card.dataset.rating || "0");
-
-      const matchesSearch = title.includes(searchTerm);
-      const matchesStatus = statusValue === "" || status === statusValue;
-      const matchesYear = yearValue === "" || year === yearValue;
-      const matchesRating = ratingValue === 0 || rating >= ratingValue;
-
-      if (matchesSearch && matchesStatus && matchesYear && matchesRating) {
-        card.style.display = "block";
-        card.style.animation = "fadeIn 0.3s ease-in-out";
-      } else {
-        card.style.display = "none";
-      }
-    });
+      searchInput.addEventListener("input", searchInput.inputHandler);
+    }
   }
 
-  searchInput?.addEventListener("input", filterItems);
+  document.addEventListener("DOMContentLoaded", initFilters);
+
+  document.addEventListener("astro:page-load", initFilters);
 </script>

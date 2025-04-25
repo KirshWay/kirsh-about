@@ -2,6 +2,7 @@
 import Layout from "../../layouts/main.astro";
 import CardContent from "../../components/CardContent.astro";
 import SearchAndFilter from "../../components/SearchAndFilter.astro";
+import ReviewModal from "../../components/ReviewModal.astro";
 import { gamesItems } from "../../data";
 ---
 
@@ -19,6 +20,8 @@ import { gamesItems } from "../../data";
           ))
         }
       </div>
+
+      <ReviewModal id="review-modal" />
     </div>
   </main>
 </Layout>

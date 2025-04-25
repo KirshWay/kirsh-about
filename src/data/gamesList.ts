@@ -8,4 +8,11 @@ export const gamesItems: ListItem[] = [
     year: 2020,
     image: '/src/assets/images/games/tlou2.jpg',
   },
+  {
+    id: 'eldenring',
+    title: 'Elden Ring',
+    status: 'planned',
+    year: 2022,
+    image: '/src/assets/images/games/EldenRing.jpg',
+  },
 ];  

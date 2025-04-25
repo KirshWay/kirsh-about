@@ -1,0 +1,35 @@
+---
+import type { Variant } from "../data";
+import Ping from "./Ping.astro";
+import GithubIcon from "../assets/icons/github.svg";
+
+const { name, url, description, tech } = Astro.props;
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="flex flex-col md:flex-row p-4 rounded-md text-gray-300 bg-[#655953] border-l-4 border-[#a77fc5] transition-all duration-300 ease-in-out hover:bg-[#6d5f59] hover:shadow-lg hover:shadow-[#a77fc580] h-full"
+>
+  <div class="flex items-center justify-center shrink-0 md:mr-4">
+    <GithubIcon width="32" height="32" class="text-[#a77fc5]" />
+  </div>
+
+  <div class="flex flex-col flex-grow">
+    <p class="flex items-center gap-2 font-semibold text-xl">{name}</p>
+
+    <p class="mt-1 mb-2">{description}</p>
+
+    <div class="flex flex-wrap gap-1.5 mt-auto">
+      {
+        tech.map((tech: { id: string; name: string; color: Variant }) => (
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-[#4a413c] border border-[#a77fc5]">
+            <Ping variant={tech.color} />
+            <span class="ml-1.5">{tech.name}</span>
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</a>

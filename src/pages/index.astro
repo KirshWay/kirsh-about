@@ -1,15 +1,14 @@
 ---
 import { Image } from "astro:assets";
 import GithubIcon from "../assets/icons/github.svg";
-import InstagramIcon from "../assets/icons/instagram.svg";
-import TelegramIcon from "../assets/icons/telegram.svg";
-import XIcon from "../assets/icons/x.svg";
-
+import Footer from "../components/Footer.astro";
 import AsciiImage from "../components/AsciiImage.astro";
+import GithubProjects from "../components/GithubProjects.astro";
 import Ping from "../components/Ping.astro";
 import Layout from "../layouts/main.astro";
 
 import { getUrl } from "../utils";
+import { projectList } from "../data";
 ---
 
 <Layout content={{ title: "Kirshway" }}>
@@ -54,17 +53,31 @@ import { getUrl } from "../utils";
 
         <section>
           <p class="text-2xl font-semibold mb-6 text-[#a77fc5]">Projects</p>
-          <a
-            href="https://github.com/KirshWay"
-            class="link-style"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span class="flex gap-2 items-center">
-              <GithubIcon width="24" height="24" />
-              all projects →
-            </span>
-          </a>
+
+          <div class="flex flex-col gap-4">
+            {
+              projectList.map((project) => (
+                <GithubProjects
+                  name={project.name}
+                  url={project.url}
+                  description={project.description}
+                  tech={project.tech}
+                />
+              ))
+            }
+
+            <a
+              href="https://github.com/KirshWay"
+              class="link-style mt-4"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="flex gap-2 items-center">
+                <GithubIcon width="24" height="24" />
+                all projects →
+              </span>
+            </a>
+          </div>
         </section>
       </div>
 
@@ -183,46 +196,8 @@ import { getUrl } from "../utils";
           </div>
         </div>
       </section>
-
-      <footer class="flex flex-col gap-2 my-8">
-        <p class="text-2xl font-semibold mb-2 text-[#a77fc5]">Socials</p>
-
-        <ul class="flex gap-6 p-4 bg-[#655953] rounded-xl">
-          <li>
-            <a
-              href="https://t.me/KirshWay"
-              class="link-style"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Telegram"
-            >
-              <TelegramIcon width="24" height="24" />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://x.com/NemetsViktor"
-              class="link-style"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="X"
-            >
-              <XIcon width="24" height="24" />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.instagram.com/kirshway/"
-              class="link-style"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <InstagramIcon width="24" height="24" />
-            </a>
-          </li>
-        </ul>
-      </footer>
     </div>
+
+    <Footer />
   </main>
 </Layout>
