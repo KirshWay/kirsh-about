@@ -36,4 +36,6 @@ export type Variant =
   | "black"
   | "lightBlue"
   | "lightGreen"
-  | "pink";
+  | "pink"
+  | "red"
+  | "orange";

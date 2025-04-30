@@ -15,4 +15,18 @@ export const gamesItems: ListItem[] = [
     year: 2022,
     image: '/src/assets/images/games/EldenRing.jpg',
   },
+  {
+    id: 'ultrakill',
+    title: 'ULTRAKILL',
+    status: 'planned',
+    year: 2020,
+    image: '/src/assets/images/games/ultrakill.jpg',
+  },
+  {
+    id: 'keepdriving',
+    title: 'Keep Driving',
+    status: 'planned',
+    year: 2025,
+    image: '/src/assets/images/games/keepDriving.jpg',
+  },
 ];  

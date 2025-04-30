@@ -2,6 +2,43 @@ import type { Project } from ".";
 
 export const projectList: Project[] = [
   {
+    name: "Orgatime",
+    description: "Enterprise-grade task management system with drag-and-drop planning and CI/CD deployment",
+    url: "https://github.com/KirshWay/orgatime",
+    tech: [
+      {
+        id: 'ts',
+        name: 'TypeScript',
+        color: 'blue'
+      },
+      {
+        id: 'react',
+        name: 'React',
+        color: 'lightBlue'
+      },
+      {
+        id: 'nest',
+        name: 'NestJS',
+        color: 'red'
+      },
+      {
+        id: 'tailwind',
+        name: 'Tailwind CSS',
+        color: 'lightGreen'
+      },
+      {
+        id: 'prisma',
+        name: 'Prisma',
+        color: 'pink'
+      },
+      {
+        id: 'docker',
+        name: 'Docker',
+        color: 'blue'
+      }
+    ]
+  },
+  {
     name: "Kirsh Vault",
     description: "Offline-capable collection management system",
     url: "https://github.com/KirshWay/kirsh_vault",

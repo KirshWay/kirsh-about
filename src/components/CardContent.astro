@@ -61,24 +61,24 @@ if (item.review) {
   <div class="flex flex-col gap-2">
     {
       item.image && (
-        <div class="overflow-hidden rounded-lg">
+        <div class="aspect-[16/9] w-full overflow-hidden rounded-lg bg-[#4e4138]">
           {isLocalImage ? (
             <Image
               src={localImages[item.image]()}
               alt={item.title}
               width={300}
-              height={200}
+              height={169}
               loading={isAboveFold ? "eager" : "lazy"}
-              class="w-full h-auto object-cover"
+              class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
             />
           ) : (
             <img
               src={imgSrcForStandardTag}
               alt={item.title}
               width="300"
-              height="200"
+              height="169"
               loading={isAboveFold ? "eager" : "lazy"}
-              class="w-full h-auto object-cover"
+              class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
             />
           )}
         </div>

@@ -129,7 +129,8 @@ import { projectList } from "../data";
           class="bg-[#655953] p-2 rounded-xl transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1"
         >
           <img
-            src="https://github-readme-stats.vercel.app/api/top-langs/?username=KirshWay&layout=compact&theme=gruvbox&hide_border=true&bg_color=3c3836&title_color=a77fc5&text_color=fbf1c7"
+            id="github-stats"
+            src="https://github-readme-stats.vercel.app/api/top-langs/?username=KirshWay&layout=compact&theme=gruvbox&hide_border=true&bg_color=3c3836&title_color=a77fc5&text_color=fbf1c7&cache_seconds=1800"
             alt="Most used languages"
             width="100%"
             height="auto"
@@ -201,3 +202,21 @@ import { projectList } from "../data";
     <Footer />
   </main>
 </Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const statsImage = document.getElementById("github-stats");
+    if (statsImage) {
+      const timestamp = new Date().getTime();
+      const currentSrc = statsImage.getAttribute("src");
+
+      if (currentSrc) {
+        const newSrc = currentSrc.includes("t=")
+          ? currentSrc.replace(/t=\d+/, `t=${timestamp}`)
+          : `${currentSrc}&t=${timestamp}`;
+
+        statsImage.setAttribute("src", newSrc);
+      }
+    }
+  });
+</script>
