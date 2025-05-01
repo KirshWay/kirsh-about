@@ -29,4 +29,25 @@ export const gamesItems: ListItem[] = [
     year: 2025,
     image: '/src/assets/images/games/keepDriving.jpg',
   },
+  {
+    id: 'sekiro',
+    title: 'Sekiro: Shadows Die Twice',
+    status: 'planned',
+    year: 2019,
+    image: '/src/assets/images/games/sekiro.jpg',
+  },
+  {
+    id: 'gloomwood',
+    title: 'Gloomwood',
+    status: 'planned',
+    year: 2022,
+    image: '/src/assets/images/games/gloomwood.png',
+  },
+  {
+    id: 'locoMotive',
+    title: 'Loco Motive',
+    status: 'planned',
+    year: 2024,
+    image: '/src/assets/images/games/loco-motive.jpg',
+  },
 ];  
