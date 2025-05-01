@@ -6,6 +6,7 @@ import AsciiImage from "../components/AsciiImage.astro";
 import GithubProjects from "../components/GithubProjects.astro";
 import Ping from "../components/Ping.astro";
 import Layout from "../layouts/main.astro";
+import InfoCard from "../components/InfoCard.astro";
 
 import { getUrl } from "../utils";
 import { projectList } from "../data";
@@ -87,42 +88,10 @@ import { projectList } from "../data";
         <div
           class="grid grid-cols-2 grid-rows-2 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-4 md:grid-rows-1 gap-2"
         >
-          <div
-            class="flex flex-col w-full p-4 rounded-md text-gray-300 bg-[#655953] border-2 border-[#a77fc5] transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1 hover:border-[#c099e6] h-full"
-          >
-            <span class="text-sm text-[#a77fc5] font-semibold">
-              Main editor
-            </span>
-
-            <span class="font-semibold text-xl">Cursor AI</span>
-          </div>
-          <div
-            class="flex flex-col w-full p-4 rounded-md text-gray-300 bg-[#655953] border-2 border-[#a77fc5] transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1 hover:border-[#c099e6] h-full"
-          >
-            <span class="text-sm text-[#a77fc5] font-semibold">
-              Second editor
-            </span>
-
-            <span class="font-semibold text-xl">Zed editor</span>
-          </div>
-          <div
-            class="flex flex-col w-full p-4 rounded-md text-gray-300 bg-[#655953] border-2 border-[#a77fc5] transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1 hover:border-[#c099e6] h-full"
-          >
-            <span class="text-sm text-[#a77fc5] font-semibold">
-              Main frontend framework
-            </span>
-
-            <span class="font-semibold text-xl">React + Next.js</span>
-          </div>
-          <div
-            class="flex flex-col w-full p-4 rounded-md text-gray-300 bg-[#655953] border-2 border-[#a77fc5] transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1 hover:border-[#c099e6] h-full"
-          >
-            <span class="text-sm text-[#a77fc5] font-semibold">
-              Main backend framework
-            </span>
-
-            <span class="font-semibold text-xl">Nest.js</span>
-          </div>
+          <InfoCard title="Main editor" content="Cursor AI" />
+          <InfoCard title="Second editor" content="Zed editor" />
+          <InfoCard title="Main frontend framework" content="React + Next.js" />
+          <InfoCard title="Main backend framework" content="Nest.js" />
         </div>
 
         <div
