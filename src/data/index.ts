@@ -23,7 +23,7 @@ export type Project = {
   }[];
 }
 
-export type MediaType = 'games' | 'books' | 'cinema';
+export type MediaType = 'games' | 'books' | 'films';
 
 export type GameStatus = 'completed' | 'in progress' | 'planned';
 
