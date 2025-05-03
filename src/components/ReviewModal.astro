@@ -15,7 +15,7 @@ const { id } = Astro.props;
   >
     <div class="p-4 relative">
       <div class="flex justify-between items-start mb-4">
-        <h3 class="text-xl font-medium text-accent-secondary modal-title"></h3>
+        <p class="text-xl font-medium text-accent-secondary modal-title"></p>
         <button
           class="close-modal text-foreground hover:text-accent-secondary transition-colors cursor-pointer"
           aria-label="Close"
@@ -37,15 +37,15 @@ const { id } = Astro.props;
         </button>
       </div>
 
-      <div class="modal-year text-sm text-foreground opacity-80 mb-3"></div>
+      <p class="modal-year text-sm text-foreground opacity-80 mb-3"></p>
 
-      <div
-        class="modal-review prose prose-invert prose-sm max-w-none text-foreground modal-content"
+      <p
+        class="modal-review prose prose-invert prose-sm max-w-none text-foreground modal-content whitespace-pre-wrap"
       >
-      </div>
+      </p>
 
       <div class="mt-4 text-right">
-        <div class="modal-recommendation text-2xl"></div>
+        <p class="modal-recommendation text-2xl"></p>
       </div>
     </div>
   </div>

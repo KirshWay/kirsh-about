@@ -121,7 +121,11 @@ if (item.review) {
 
       {
         item.recommendationEmoji && (
-          <p class="text-sm mt-1">{item.recommendationEmoji}</p>
+          <div class="mt-4 text-right">
+            <div class="modal-recommendation text-sm">
+              {item.recommendationEmoji}
+            </div>
+          </div>
         )
       }
     </div>
