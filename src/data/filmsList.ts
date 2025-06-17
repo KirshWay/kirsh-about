@@ -18,5 +18,13 @@ In summary, Mickey 17 offers a thought-provoking examination of power and identi
     recommendationEmoji: '👍',
     year: 2025,
     image: '/src/assets/images/films/mickey17.jpg',
+  },
+  {
+    id: 'arcane',
+    title: 'Arcane(1-2 seasons)',
+    status: 'planned',
+    review: `I've watched the first season✅, I'll be watching the second season soon.`,
+    year: 2021,
+    image: '/src/assets/images/films/arcane.jpg',
   }
-];  
+];
