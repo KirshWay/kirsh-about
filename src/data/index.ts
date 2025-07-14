@@ -1,4 +1,5 @@
 export { gamesItems } from './gamesList';
+export { booksItems } from './booksList';
 export { projectList } from './projectList';
 
 export type ListItem = {
@@ -7,9 +8,10 @@ export type ListItem = {
   status: 'completed' | 'in progress' | 'planned';
   rating?: number;
   image?: string;
+  typeBook?: 'audiobook' | 'book';
   year?: number;
   review?: string;
-  recommendationEmoji?: '👍' | '😐' | '👎';
+  recommendationEmoji?: '👍' | '🔥' | '😐' | '👎';
 }
 
 export type Project = {

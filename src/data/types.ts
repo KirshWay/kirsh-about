@@ -4,6 +4,7 @@ export type ListItem = {
   status: GameStatus;
   rating?: number;
   image?: string;
+  typeBook?: 'audiobook' | 'book';
   year?: number;
   review?: string;
   recommendationEmoji?: '👍' | '😐' | '👎';
