@@ -1,4 +1,4 @@
-import type { ListItem } from "./types"
+import type { ListItem } from "."
 
 export const booksItems: ListItem[] = [
   {

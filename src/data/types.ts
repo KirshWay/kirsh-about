@@ -7,7 +7,7 @@ export type ListItem = {
   typeBook?: 'audiobook' | 'book';
   year?: number;
   review?: string;
-  recommendationEmoji?: '👍' | '😐' | '👎';
+  recommendationEmoji?: '👍' | '😐' | '🔥' | '👎' ;
 }
 
 export type Project = {
@@ -21,7 +21,7 @@ export type Project = {
   }[];
 }
 
-export type MediaType = 'games' | 'books' | 'cinema';
+export type MediaType = 'games' | 'books' | 'films';
 
 export type GameStatus = 'completed' | 'in progress' | 'planned';
 
@@ -34,4 +34,6 @@ export type Variant =
   | "black"
   | "lightBlue"
   | "lightGreen"
-  | "pink"; 
+  | "pink"
+  | "red"
+  | "orange";

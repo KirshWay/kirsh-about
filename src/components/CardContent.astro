@@ -1,13 +1,13 @@
 ---
 import { Image } from "astro:assets";
 import StarRating from "./StarRating.astro";
-import type { GameStatus, ListItem } from "../data";
-import AudioBookIcon from "../assets/icons/audioBook.svg";
-import BookIcon from "../assets/icons/book.svg";
+import type { GameStatus, ListItem } from "@/data";
+import AudioBookIcon from "@assets/icons/audioBook.svg";
+import BookIcon from "@assets/icons/book.svg";
 import Ping from "./Ping.astro";
-import type { Variant } from "../data";
+import type { Variant } from "@/data";
 import type { ImageMetadata } from "astro";
-import { getUrl } from "../utils";
+import { getUrl } from "@/utils";
 
 const { item, isAboveFold = false }: Props = Astro.props;
 

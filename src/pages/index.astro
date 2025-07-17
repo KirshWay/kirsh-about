@@ -1,15 +1,16 @@
 ---
 import { Image } from "astro:assets";
-import GithubIcon from "../assets/icons/github.svg";
-import Footer from "../components/Footer.astro";
-import AsciiImage from "../components/AsciiImage.astro";
-import GithubProjects from "../components/GithubProjects.astro";
-import Ping from "../components/Ping.astro";
-import Layout from "../layouts/main.astro";
-import InfoCard from "../components/InfoCard.astro";
+import GithubIcon from "@assets/icons/github.svg";
+import Footer from "@components/Footer.astro";
+import AsciiImage from "@components/AsciiImage.astro";
+import GithubProjects from "@components/GithubProjects.astro";
+import Ping from "@components/Ping.astro";
+import Layout from "@layouts/main.astro";
+import InfoCard from "@components/InfoCard.astro";
 
-import { getUrl } from "../utils";
-import { projectList } from "../data";
+import { getUrl } from "@/utils";
+import { projectList } from "@/data";
+import type { Project } from "@/data/types";
 ---
 
 <Layout content={{ title: "Kirshway" }}>
@@ -49,6 +50,13 @@ import { projectList } from "../data";
             >
               Intelsy
             </a>
+
+            <div class="flex items-center">
+              <span class="block h-0.5 bg-foreground w-2"></span>
+              <span
+                class="block w-3 h-3 border-t-2 border-r-2 border-foreground transform rotate-45 -translate-x-1"
+              ></span>
+            </div>
           </div>
         </section>
 
@@ -57,7 +65,7 @@ import { projectList } from "../data";
 
           <div class="flex flex-col gap-4">
             {
-              projectList.map((project) => (
+              projectList.map((project: Project) => (
                 <GithubProjects
                   name={project.name}
                   url={project.url}

@@ -1,4 +1,4 @@
-import type { GameStatus } from "../data";
+import type { GameStatus } from "@/data";
 
 export const BASE_URL = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL

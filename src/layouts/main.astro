@@ -4,13 +4,13 @@ import "@fontsource/geist-mono/700.css";
 import "@fontsource/jetbrains-mono/400.css";
 import "@fontsource/jetbrains-mono/700.css";
 
-import "../styles/global.css";
+import "@styles/global.css";
 
 import { ClientRouter, slide } from "astro:transitions";
 
-import Header from "../components/Header.astro";
+import Header from "@components/Header.astro";
 
-import { getUrl } from "../utils";
+import { getUrl } from "@/utils";
 
 const { content } = Astro.props;
 ---
