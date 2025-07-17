@@ -9,9 +9,10 @@ import Layout from '@layouts/main.astro';
 import { Image } from 'astro:assets';
 
 import { projectList } from '@/data';
+import { Variant } from '@/types';
 import { getUrl } from '@/utils';
 
-import type { Project } from '@/data';
+import type { Project } from '@/types';
 ---
 
 <Layout content={{ title: 'Kirshway' }}>
@@ -24,7 +25,7 @@ import type { Project } from '@/data';
           <p class="text-lg font-semibold text-[#888]">Viktor Nemets</p>
 
           <div class="flex items-center gap-2">
-            <Ping variant="main" />
+            <Ping variant={Variant.MAIN} />
 
             <p class="text-[#a77fc5] text-sm">Working on interesting projects</p>
           </div>
@@ -134,15 +135,15 @@ import type { Project } from '@/data';
 
                 <ul class="flex flex-col gap-2 mt-4">
                   <li class="flex gap-2 items-center">
-                    <Ping variant="green" />
+                    <Ping variant={Variant.GREEN} />
                     <span>Team Leadership</span>
                   </li>
                   <li class="flex gap-2 items-center">
-                    <Ping variant="green" />
+                    <Ping variant={Variant.GREEN} />
                     <span>Docker + CI/CD</span>
                   </li>
                   <li class="flex gap-2 items-center">
-                    <Ping variant="green" />
+                    <Ping variant={Variant.GREEN} />
                     <span>Python</span>
                   </li>
                 </ul>
@@ -153,11 +154,11 @@ import type { Project } from '@/data';
 
                 <ul class="flex flex-col gap-2 mt-4">
                   <li class="flex gap-2 items-center">
-                    <Ping variant="gray" />
+                    <Ping variant={Variant.GRAY} />
                     <span>tRPC</span>
                   </li>
                   <li class="flex gap-2 items-center">
-                    <Ping variant="gray" />
+                    <Ping variant={Variant.GRAY} />
                     <span>Hono.js</span>
                   </li>
                 </ul>

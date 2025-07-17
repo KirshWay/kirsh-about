@@ -1,7 +1,7 @@
 ---
-import { STATUS_GAME } from '@/constants';
+import { Status } from '@/types';
 
-import type { ListItem, MediaType } from '@/data';
+import type { ListItem, MediaType } from '@/types';
 
 type Props = {
   items: ListItem[];
@@ -13,6 +13,8 @@ const { items, itemType } = Astro.props;
 const uniqueYears = [
   ...new Set(items.filter((item) => item.year !== undefined).map((item) => item.year)),
 ].sort((a, b) => (b || 0) - (a || 0));
+
+const STATUS_GAME = Object.values(Status);
 ---
 
 <div class="mb-6">

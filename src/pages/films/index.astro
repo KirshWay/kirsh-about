@@ -5,12 +5,13 @@ import SearchAndFilter from '@components/SearchAndFilter.astro';
 import Layout from '@layouts/main.astro';
 
 import { filmsItems } from '@/data';
+import { MediaType } from '@/types';
 ---
 
 <Layout content={{ title: 'Films | Kirshway' }}>
   <main class="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
     <div class="container mx-auto p-4 grow">
-      <SearchAndFilter items={filmsItems} itemType="films" />
+      <SearchAndFilter items={filmsItems} itemType={MediaType.FILMS} />
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4">
         {filmsItems.map((film, index) => <CardContent item={film} isAboveFold={index < 9} />)}

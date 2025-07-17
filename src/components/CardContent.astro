@@ -3,13 +3,13 @@ import AudioBookIcon from '@assets/icons/audioBook.svg';
 import BookIcon from '@assets/icons/book.svg';
 import { Image } from 'astro:assets';
 
+import { Status, Variant } from '@/types';
 import { getUrl } from '@/utils';
 
 import Ping from './Ping.astro';
 import StarRating from './StarRating.astro';
 
-import type { GameStatus, ListItem } from '@/data';
-import type { Variant } from '@/data';
+import type { ListItem } from '@/types';
 import type { ImageMetadata } from 'astro';
 
 const { item, isAboveFold = false }: Props = Astro.props;
@@ -31,14 +31,14 @@ if (item.image && !isLocalImage && !item.image.startsWith('http')) {
   imgSrcForStandardTag = getUrl(item.image);
 }
 
-const getVariantByStatus = (status: GameStatus): Variant => {
+const getVariantByStatus = (status: Status): Variant => {
   switch (status) {
-    case 'completed':
-      return 'green';
-    case 'in progress':
-      return 'yellow';
+    case Status.COMPLETED:
+      return Variant.GREEN;
+    case Status.IN_PROGRESS:
+      return Variant.YELLOW;
     default:
-      return 'gray';
+      return Variant.GRAY;
   }
 };
 
