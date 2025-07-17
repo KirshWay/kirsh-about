@@ -1,4 +1,4 @@
-import type { ListItem } from ".";
+import type { ListItem } from '.';
 
 export const filmsItems: ListItem[] = [
   {
@@ -33,5 +33,5 @@ In summary, Mickey 17 offers a thought-provoking examination of power and identi
     review: `I've watched the first season✅, I'll be watching the second season soon.`,
     year: 2021,
     image: '/src/assets/images/films/arcane.jpg',
-  }
+  },
 ];

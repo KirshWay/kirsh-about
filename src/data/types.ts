@@ -7,8 +7,8 @@ export type ListItem = {
   typeBook?: 'audiobook' | 'book';
   year?: number;
   review?: string;
-  recommendationEmoji?: '👍' | '😐' | '🔥' | '👎' ;
-}
+  recommendationEmoji?: '👍' | '😐' | '🔥' | '👎';
+};
 
 export type Project = {
   name: string;
@@ -19,21 +19,21 @@ export type Project = {
     name: string;
     color: Variant;
   }[];
-}
+};
 
 export type MediaType = 'games' | 'books' | 'films';
 
 export type GameStatus = 'completed' | 'in progress' | 'planned';
 
 export type Variant =
-  | "main"
-  | "green"
-  | "gray"
-  | "yellow"
-  | "blue"
-  | "black"
-  | "lightBlue"
-  | "lightGreen"
-  | "pink"
-  | "red"
-  | "orange";
+  | 'main'
+  | 'green'
+  | 'gray'
+  | 'yellow'
+  | 'blue'
+  | 'black'
+  | 'lightBlue'
+  | 'lightGreen'
+  | 'pink'
+  | 'red'
+  | 'orange';

@@ -1,5 +1,5 @@
-export type { ListItem, Project, GameStatus, MediaType, Variant } from './types';
-export { gamesItems } from './gamesList'
 export { booksItems } from './booksList';
-export { projectList } from './projectList';
 export { filmsItems } from './filmsList';
+export { gamesItems } from './gamesList';
+export { projectList } from './projectList';
+export type { GameStatus, ListItem, MediaType, Project, Variant } from './types';

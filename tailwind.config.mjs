@@ -10,23 +10,23 @@ export default {
       colors: {
         background: 'var(--color-background)',
         foreground: 'var(--color-foreground)',
-        
+
         'text-primary': 'var(--color-text-primary)',
         'text-secondary': 'var(--color-text-secondary)',
-        
+
         'accent-primary': 'var(--color-accent-primary)',
         'accent-primary-hover': 'var(--color-accent-primary-hover)',
         'accent-secondary': 'var(--color-accent-secondary)',
         'accent-secondary-hover': 'var(--color-accent-secondary-hover)',
-        
+
         'component-primary': 'var(--color-component-primary)',
         'component-primary-hover': 'var(--color-component-primary-hover)',
         'component-secondary': 'var(--color-component-secondary)',
-        
-        'border': 'var(--color-border)',
+
+        border: 'var(--color-border)',
         'border-hover': 'var(--color-border-hover)',
       },
     },
   },
   plugins: [],
-} 
+};

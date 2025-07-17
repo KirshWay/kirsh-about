@@ -1,4 +1,4 @@
-import type { ListItem } from ".";
+import type { ListItem } from '.';
 
 export const gamesItems: ListItem[] = [
   {
@@ -18,7 +18,7 @@ export const gamesItems: ListItem[] = [
   },
   {
     id: 'bg3',
-    title: 'Baldur\'s Gate 3',
+    title: "Baldur's Gate 3",
     status: 'completed',
     year: 2023,
     image: '/src/assets/images/games/bg3.jpg',
@@ -66,7 +66,7 @@ Personally, I’m disappointed in the project: as a cyberpunk fan, I was waiting
   },
   {
     id: 'mario3dworld',
-    title: 'Super Mario 3D World + Bowser\'s Fury',
+    title: "Super Mario 3D World + Bowser's Fury",
     status: 'completed',
     rating: 8,
     year: 2021,
@@ -195,5 +195,5 @@ Overall, Bayonetta is a must-play for everyone who loves slashers, and even for 
     status: 'planned',
     year: 2022,
     image: '/src/assets/images/games/gloomwood.png',
-  }
+  },
 ];

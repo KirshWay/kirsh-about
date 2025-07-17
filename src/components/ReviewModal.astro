@@ -54,55 +54,53 @@ const { id } = Astro.props;
 <script is:inline define:vars={{ modalId: id }}>
   function initModal() {
     const setupModalClicks = () => {
-      document.body.removeEventListener("click", handleBodyClick);
-      document.body.addEventListener("click", handleBodyClick);
+      document.body.removeEventListener('click', handleBodyClick);
+      document.body.addEventListener('click', handleBodyClick);
     };
 
     function handleBodyClick(e) {
       const target = e.target;
-      const trigger = target.closest("[data-modal-trigger]");
+      const trigger = target.closest('[data-modal-trigger]');
 
       if (!trigger) return;
 
       e.preventDefault();
 
-      const targetModalId = trigger.getAttribute("data-modal-target");
+      const targetModalId = trigger.getAttribute('data-modal-target');
       if (!targetModalId) return;
 
       const modalEl = document.getElementById(targetModalId);
       if (!modalEl || !(modalEl instanceof HTMLDialogElement)) return;
 
-      const modalContent = trigger.getAttribute("data-modal-content");
+      const modalContent = trigger.getAttribute('data-modal-content');
       if (!modalContent) return;
 
       try {
         const modalData = JSON.parse(modalContent);
 
-        const titleElem = modalEl.querySelector(".modal-title");
-        if (titleElem) titleElem.textContent = modalData.title || "";
+        const titleElem = modalEl.querySelector('.modal-title');
+        if (titleElem) titleElem.textContent = modalData.title || '';
 
-        const yearElem = modalEl.querySelector(".modal-year");
+        const yearElem = modalEl.querySelector('.modal-year');
         if (yearElem)
-          yearElem.textContent = modalData.year
-            ? `Year released: ${modalData.year}`
-            : "";
+          yearElem.textContent = modalData.year ? `Year released: ${modalData.year}` : '';
 
-        const reviewElem = modalEl.querySelector(".modal-review");
-        if (reviewElem) reviewElem.textContent = modalData.review || "";
+        const reviewElem = modalEl.querySelector('.modal-review');
+        if (reviewElem) reviewElem.textContent = modalData.review || '';
 
-        const recElem = modalEl.querySelector(".modal-recommendation");
-        if (recElem) recElem.textContent = modalData.recommendationEmoji || "";
+        const recElem = modalEl.querySelector('.modal-recommendation');
+        if (recElem) recElem.textContent = modalData.recommendationEmoji || '';
 
         if (window.innerWidth < 768) {
-          modalEl.classList.add("mobile-modal");
+          modalEl.classList.add('mobile-modal');
         } else {
-          modalEl.classList.remove("mobile-modal");
+          modalEl.classList.remove('mobile-modal');
         }
 
         modalEl.showModal();
-        modalEl.classList.add("open");
+        modalEl.classList.add('open');
       } catch (err) {
-        console.error("Error parsing modal data:", err);
+        console.error('Error parsing modal data:', err);
       }
     }
 
@@ -113,15 +111,15 @@ const { id } = Astro.props;
 
       if (!modal || !(modal instanceof HTMLDialogElement)) return;
 
-      const closeBtn = modal.querySelector(".close-modal");
+      const closeBtn = modal.querySelector('.close-modal');
 
       if (closeBtn) {
-        closeBtn.addEventListener("click", () => {
+        closeBtn.addEventListener('click', () => {
           closeModalWithAnimation(modal);
         });
       }
 
-      modal.addEventListener("click", (e) => {
+      modal.addEventListener('click', (e) => {
         if (e.target === modal) {
           closeModalWithAnimation(modal);
         }
@@ -129,18 +127,18 @@ const { id } = Astro.props;
     }
 
     function closeModalWithAnimation(modal) {
-      modal.classList.remove("open");
-      modal.classList.add("closing");
+      modal.classList.remove('open');
+      modal.classList.add('closing');
 
       setTimeout(() => {
-        modal.classList.remove("closing");
+        modal.classList.remove('closing');
         modal.close();
       }, 300);
     }
 
     const handleEscape = (e) => {
-      if (e.key === "Escape") {
-        const modalEl = document.querySelector("dialog[open]");
+      if (e.key === 'Escape') {
+        const modalEl = document.querySelector('dialog[open]');
         if (modalEl && modalEl instanceof HTMLDialogElement) {
           closeModalWithAnimation(modalEl);
         }
@@ -148,25 +146,25 @@ const { id } = Astro.props;
     };
 
     const handleResize = () => {
-      const modalEl = document.querySelector("dialog[open]");
+      const modalEl = document.querySelector('dialog[open]');
       if (modalEl && modalEl instanceof HTMLDialogElement) {
         if (window.innerWidth < 768) {
-          modalEl.classList.add("mobile-modal");
+          modalEl.classList.add('mobile-modal');
         } else {
-          modalEl.classList.remove("mobile-modal");
+          modalEl.classList.remove('mobile-modal');
         }
       }
     };
 
-    document.removeEventListener("keydown", handleEscape);
-    document.addEventListener("keydown", handleEscape);
+    document.removeEventListener('keydown', handleEscape);
+    document.addEventListener('keydown', handleEscape);
 
-    window.removeEventListener("resize", handleResize);
-    window.addEventListener("resize", handleResize);
+    window.removeEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize);
 
     setupModal(modalId);
 
-    document.querySelectorAll("dialog.modal").forEach((modal) => {
+    document.querySelectorAll('dialog.modal').forEach((modal) => {
       if (modal.id) {
         setupModal(modal.id);
       }
@@ -175,9 +173,9 @@ const { id } = Astro.props;
     setupModalClicks();
   }
 
-  document.addEventListener("DOMContentLoaded", initModal);
+  document.addEventListener('DOMContentLoaded', initModal);
 
-  document.addEventListener("astro:page-load", initModal);
+  document.addEventListener('astro:page-load', initModal);
 </script>
 
 <style>

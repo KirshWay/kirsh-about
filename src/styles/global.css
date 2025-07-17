@@ -3,22 +3,22 @@
 @theme {
   --color-background: #282828;
   --color-foreground: #fbf1c7;
-  
+
   --color-text-primary: #fbf1c7;
   --color-text-secondary: #e0d6c3;
-  
+
   --color-accent-primary: #a18fc6;
   --color-accent-primary-hover: #b19cd9;
   --color-accent-secondary: #a77fc5;
   --color-accent-secondary-hover: #c099e6;
-  
+
   --color-component-primary: #655953;
   --color-component-primary-hover: #6d5f59;
   --color-component-secondary: #4a413c;
-  
+
   --color-border: #a77fc5;
   --color-border-hover: #c099e6;
-  
+
   --color-scrollbar-track: #282828;
   --color-scrollbar-thumb: #a18fc6;
   --color-scrollbar-thumb-hover: #b19cd9;
@@ -28,7 +28,8 @@
   font-family: 'Geist Mono', monospace;
 }
 
-code, pre {
+code,
+pre {
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -52,7 +53,7 @@ a.no-underline {
 }
 
 body::after {
-  content: "";
+  content: '';
   position: fixed;
   top: 0;
   left: 0;
@@ -66,7 +67,8 @@ body::after {
 }
 
 @keyframes ping {
-  75%, 100% {
+  75%,
+  100% {
     transform: scale(2);
     opacity: 0;
   }

@@ -1,5 +1,5 @@
 ---
-import StarIcon from "@assets/icons/star.svg";
+import StarIcon from '@assets/icons/star.svg';
 
 type Props = {
   rating: number;
@@ -8,12 +8,7 @@ type Props = {
   inactiveColor?: string;
 };
 
-const {
-  rating,
-  maxRating = 10,
-  activeColor = "#e9d75a",
-  inactiveColor = "#e0d6c3",
-} = Astro.props;
+const { rating, maxRating = 10, activeColor = '#e9d75a', inactiveColor = '#e0d6c3' } = Astro.props;
 ---
 
 <div class="flex gap-2">
@@ -21,9 +16,7 @@ const {
     Array.from({ length: maxRating }).map((_, index) => (
       <div
         class="w-4 h-4"
-        style={
-          index < rating ? `color: ${activeColor};` : `color: ${inactiveColor};`
-        }
+        style={index < rating ? `color: ${activeColor};` : `color: ${inactiveColor};`}
       >
         <StarIcon />
       </div>

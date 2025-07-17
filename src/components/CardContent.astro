@@ -1,13 +1,16 @@
 ---
-import { Image } from "astro:assets";
-import StarRating from "./StarRating.astro";
-import type { GameStatus, ListItem } from "@/data";
-import AudioBookIcon from "@assets/icons/audioBook.svg";
-import BookIcon from "@assets/icons/book.svg";
-import Ping from "./Ping.astro";
-import type { Variant } from "@/data";
-import type { ImageMetadata } from "astro";
-import { getUrl } from "@/utils";
+import AudioBookIcon from '@assets/icons/audioBook.svg';
+import BookIcon from '@assets/icons/book.svg';
+import { Image } from 'astro:assets';
+
+import { getUrl } from '@/utils';
+
+import Ping from './Ping.astro';
+import StarRating from './StarRating.astro';
+
+import type { GameStatus, ListItem } from '@/data';
+import type { Variant } from '@/data';
+import type { ImageMetadata } from 'astro';
 
 const { item, isAboveFold = false }: Props = Astro.props;
 
@@ -17,25 +20,25 @@ type Props = {
 };
 
 const localImages = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/images/**/*.{jpeg,jpg,png,gif,webp}"
+  '/src/assets/images/**/*.{jpeg,jpg,png,gif,webp}'
 );
 
-const isLocalImage = item.image && item.image.startsWith("/src/assets/");
+const isLocalImage = item.image && item.image.startsWith('/src/assets/');
 
 let imgSrcForStandardTag = item.image;
 
-if (item.image && !isLocalImage && !item.image.startsWith("http")) {
+if (item.image && !isLocalImage && !item.image.startsWith('http')) {
   imgSrcForStandardTag = getUrl(item.image);
 }
 
 const getVariantByStatus = (status: GameStatus): Variant => {
   switch (status) {
-    case "completed":
-      return "green";
-    case "in progress":
-      return "yellow";
+    case 'completed':
+      return 'green';
+    case 'in progress':
+      return 'yellow';
     default:
-      return "gray";
+      return 'gray';
   }
 };
 
@@ -70,7 +73,7 @@ if (item.review) {
               alt={item.title}
               width={300}
               height={169}
-              loading={isAboveFold ? "eager" : "lazy"}
+              loading={isAboveFold ? 'eager' : 'lazy'}
               class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
             />
           ) : (
@@ -79,7 +82,7 @@ if (item.review) {
               alt={item.title}
               width="300"
               height="169"
-              loading={isAboveFold ? "eager" : "lazy"}
+              loading={isAboveFold ? 'eager' : 'lazy'}
               class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
             />
           )}
@@ -94,7 +97,7 @@ if (item.review) {
         item.typeBook && (
           <p class="text-sm opacity-80 flex items-center">
             Type book:
-            {item.typeBook === "audiobook" ? (
+            {item.typeBook === 'audiobook' ? (
               <AudioBookIcon class="w-5 h-5 text-[#a77fc5]" />
             ) : (
               <BookIcon class="w-5 h-5 text-[#a77fc5]" />
@@ -108,11 +111,7 @@ if (item.review) {
         <p class="text-sm opacity-80">{item.status}</p>
       </div>
 
-      {
-        item.year && (
-          <p class="text-sm opacity-80">Year released: {item.year}</p>
-        )
-      }
+      {item.year && <p class="text-sm opacity-80">Year released: {item.year}</p>}
 
       {item.rating && <StarRating rating={item.rating} />}
 
@@ -137,9 +136,7 @@ if (item.review) {
       {
         item.recommendationEmoji && (
           <div class="mt-4 text-right">
-            <div class="modal-recommendation text-sm">
-              {item.recommendationEmoji}
-            </div>
+            <div class="modal-recommendation text-sm">{item.recommendationEmoji}</div>
           </div>
         )
       }

@@ -1,7 +1,7 @@
-import { BASE_URL } from "@/constants";
+import { BASE_URL } from '@/constants';
 
 export const getUrl = (path: string) => {
-  const cleanPath = path.startsWith("/") ? path.substring(1) : path;
+  const cleanPath = path.startsWith('/') ? path.substring(1) : path;
 
   if (import.meta.env.DEV) {
     return `/${cleanPath}`;
@@ -11,5 +11,5 @@ export const getUrl = (path: string) => {
 };
 
 export const normalizePath = (path: string) => {
-  return path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path;
+  return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
 };

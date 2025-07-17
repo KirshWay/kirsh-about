@@ -1,4 +1,4 @@
-import type { ListItem } from "."
+import type { ListItem } from '.';
 
 export const booksItems: ListItem[] = [
   {
@@ -7,5 +7,5 @@ export const booksItems: ListItem[] = [
     typeBook: 'audiobook',
     status: 'in progress',
     image: '/src/assets/images/books/Elon_Musk_Isaacson .jpg',
-  }
-]
+  },
+];
