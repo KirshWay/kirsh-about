@@ -8,16 +8,18 @@ type Props = {
   inactiveColor?: string;
 };
 
-const { rating, maxRating = 10, activeColor = '#e9d75a', inactiveColor = '#e0d6c3' } = Astro.props;
+const {
+  rating,
+  maxRating = 10,
+  activeColor = 'text-star-active',
+  inactiveColor = 'text-text-secondary',
+} = Astro.props;
 ---
 
-<div class="flex gap-2">
+<div class="flex flex-wrap gap-2">
   {
     Array.from({ length: maxRating }).map((_, index) => (
-      <div
-        class="w-4 h-4"
-        style={index < rating ? `color: ${activeColor};` : `color: ${inactiveColor};`}
-      >
+      <div class:list={['w-4 h-4', index < rating ? activeColor : inactiveColor]}>
         <StarIcon />
       </div>
     ))

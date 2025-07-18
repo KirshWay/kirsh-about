@@ -1,5 +1,6 @@
 ---
 import GithubIcon from '@assets/icons/github.svg';
+import Meme from '@assets/meme.gif';
 import AsciiImage from '@components/AsciiImage.astro';
 import Footer from '@components/Footer.astro';
 import GithubProjects from '@components/GithubProjects.astro';
@@ -10,7 +11,6 @@ import { Image } from 'astro:assets';
 
 import { projectList } from '@/data';
 import { Variant } from '@/types';
-import { getUrl } from '@/utils';
 
 import type { Project } from '@/types';
 ---
@@ -22,12 +22,12 @@ import type { Project } from '@/types';
         <AsciiImage />
         <div class="flex flex-col gap-2">
           <h1 class="text-4xl font-bold">Kirshway</h1>
-          <p class="text-lg font-semibold text-[#888]">Viktor Nemets</p>
+          <p class="text-lg font-semibold text-text-secondary">Viktor Nemets</p>
 
           <div class="flex items-center gap-2">
             <Ping variant={Variant.MAIN} />
 
-            <p class="text-[#a77fc5] text-sm">Working on interesting projects</p>
+            <p class="text-accent-secondary text-sm">Working on interesting projects</p>
           </div>
 
           <p class="text-sm">
@@ -39,7 +39,7 @@ import type { Project } from '@/types';
 
       <div class="my-8 grid grid-cols-1 gap-8 md:grid-cols-2">
         <section>
-          <p class="text-2xl font-semibold mb-6 text-[#a77fc5]">Work</p>
+          <p class="text-2xl font-semibold mb-6 text-accent-secondary">Work</p>
           <div class="mb-4">
             <a
               href="https://intelsy.ru/"
@@ -60,7 +60,7 @@ import type { Project } from '@/types';
         </section>
 
         <section>
-          <p class="text-2xl font-semibold mb-6 text-[#a77fc5]">Projects</p>
+          <p class="text-2xl font-semibold mb-6 text-accent-secondary">Projects</p>
 
           <div class="flex flex-col gap-4">
             {
@@ -90,7 +90,7 @@ import type { Project } from '@/types';
       </div>
 
       <section class="flex flex-col gap-2 my-8">
-        <p class="text-2xl font-semibold mb-2 text-[#a77fc5]">Coding stats</p>
+        <p class="text-2xl font-semibold mb-2 text-accent-secondary">Coding stats</p>
 
         <div
           class="grid grid-cols-2 grid-rows-2 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-4 md:grid-rows-1 gap-2"
@@ -102,7 +102,7 @@ import type { Project } from '@/types';
         </div>
 
         <div
-          class="bg-[#655953] p-2 rounded-xl transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1"
+          class="bg-component-primary p-2 rounded-xl transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1"
         >
           <img
             id="github-stats"
@@ -115,20 +115,20 @@ import type { Project } from '@/types';
       </section>
 
       <section class="flex flex-col gap-2 my-8">
-        <p class="text-2xl font-semibold mb-2 text-[#a77fc5]">Professional Development</p>
+        <p class="text-2xl font-semibold mb-2 text-accent-secondary">Professional Development</p>
 
         <div>
           <Image
             width={40}
             height={40}
-            src={getUrl('meme.gif')}
+            src={Meme}
             priority
             loading="eager"
             fetchpriority="high"
             alt="meme"
           />
 
-          <div class="bg-[#655953] p-6 rounded-xl">
+          <div class="bg-component-primary p-6 rounded-xl">
             <div class="my-4 grid grid-cols-1 gap-8 md:grid-cols-2">
               <div>
                 <span class="font-semibold text-xl"> Topical skills and training </span>

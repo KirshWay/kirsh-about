@@ -22,6 +22,15 @@
   --color-scrollbar-track: #282828;
   --color-scrollbar-thumb: #a18fc6;
   --color-scrollbar-thumb-hover: #b19cd9;
+
+  /* Variables for repeating colors */
+  --color-component-dark: #4e4138;
+  --color-input-bg: #443b37;
+  --color-border-secondary: #7d6e65;
+  --color-hover-secondary: #584c47;
+  --color-star-active: #e9d75a;
+  --color-text-gray: #7d6e65;
+  --color-text-code: #928374;
 }
 
 :root {

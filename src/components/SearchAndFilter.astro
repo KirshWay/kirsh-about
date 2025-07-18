@@ -18,7 +18,7 @@ const STATUS_GAME = Object.values(Status);
 ---
 
 <div class="mb-6">
-  <div class="bg-[#655953] p-4 rounded-xl">
+  <div class="bg-component-primary p-4 rounded-xl">
     <div class="flex flex-col md:flex-row gap-4">
       <div class="flex-1">
         <div class="relative">
@@ -26,11 +26,11 @@ const STATUS_GAME = Object.values(Status);
             type="text"
             id="search-input"
             placeholder="Search..."
-            class="w-full p-2 pl-9 bg-[#443b37] text-white border border-[#7d6e65] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a77fc5]"
+            class="w-full p-2 pl-9 bg-input-bg text-text-primary border border-border-secondary rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-secondary"
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="absolute left-2.5 top-2.5 h-5 w-5 text-gray-[#7d6e65]"
+            class="absolute left-2.5 top-2.5 h-5 w-5 text-text-gray"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -47,7 +47,7 @@ const STATUS_GAME = Object.values(Status);
       <div class="flex-shrink-0">
         <div class="custom-select-wrapper" data-filter="status">
           <button
-            class="select-button w-full p-2 bg-[#443b37] text-white border border-[#7d6e65] rounded-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[#a77fc5] cursor-pointer"
+            class="select-button w-full p-2 bg-input-bg text-text-primary border border-border-secondary rounded-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-accent-secondary cursor-pointer"
             aria-haspopup="listbox"
             aria-expanded="false"
             aria-controls="status-listbox"
@@ -66,11 +66,11 @@ const STATUS_GAME = Object.values(Status);
             </svg>
           </button>
           <div
-            class="options-container hidden absolute z-10 mt-1 w-full bg-[#443b37] border border-[#7d6e65] rounded-lg shadow-lg max-h-60 overflow-auto custom-scrollbar"
+            class="options-container hidden absolute z-10 mt-1 w-full bg-input-bg border border-border-secondary rounded-lg shadow-lg max-h-60 overflow-auto custom-scrollbar"
           >
             <ul class="py-1" id="status-listbox" aria-label="Status options">
               <li
-                class="option cursor-pointer px-4 py-2 hover:bg-[#584c47] hover:text-[#a77fc5]"
+                class="option cursor-pointer px-4 py-2 hover:bg-hover-secondary hover:text-accent-secondary"
                 data-value=""
                 tabindex="0"
                 aria-label="All statuses"
@@ -82,7 +82,7 @@ const STATUS_GAME = Object.values(Status);
               {
                 STATUS_GAME.map((status) => (
                   <li
-                    class="option cursor-pointer px-4 py-2 hover:bg-[#584c47] hover:text-[#a77fc5]"
+                    class="option cursor-pointer px-4 py-2 hover:bg-hover-secondary hover:text-accent-secondary"
                     data-value={status}
                     tabindex="0"
                     aria-label={status}
@@ -104,7 +104,7 @@ const STATUS_GAME = Object.values(Status);
           <div class="flex-shrink-0">
             <div class="custom-select-wrapper" data-filter="year">
               <button
-                class="select-button w-full p-2 bg-[#443b37] text-white border border-[#7d6e65] rounded-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[#a77fc5] cursor-pointer"
+                class="select-button w-full p-2 bg-input-bg text-text-primary border border-border-secondary rounded-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-accent-secondary cursor-pointer"
                 aria-haspopup="listbox"
                 aria-expanded="false"
                 aria-controls="year-listbox"
@@ -123,10 +123,10 @@ const STATUS_GAME = Object.values(Status);
                   />
                 </svg>
               </button>
-              <div class="options-container hidden absolute z-10 mt-1 w-full bg-[#443b37] border border-[#7d6e65] rounded-lg shadow-lg max-h-60 overflow-auto custom-scrollbar">
+              <div class="options-container hidden absolute z-10 mt-1 w-full bg-input-bg border border-border-secondary rounded-lg shadow-lg max-h-60 overflow-auto custom-scrollbar">
                 <ul class="py-1" id="year-listbox" aria-label="Year options">
                   <li
-                    class="option cursor-pointer px-4 py-2 hover:bg-[#584c47] hover:text-[#a77fc5]"
+                    class="option cursor-pointer px-4 py-2 hover:bg-hover-secondary hover:text-accent-secondary"
                     data-value=""
                     tabindex="0"
                     aria-label="All years"
@@ -137,7 +137,7 @@ const STATUS_GAME = Object.values(Status);
                   </li>
                   {uniqueYears.map((year) => (
                     <li
-                      class="option cursor-pointer px-4 py-2 hover:bg-[#584c47] hover:text-[#a77fc5]"
+                      class="option cursor-pointer px-4 py-2 hover:bg-hover-secondary hover:text-accent-secondary"
                       data-value={year}
                       tabindex="0"
                       aria-label={`Year ${year}`}
@@ -160,7 +160,7 @@ const STATUS_GAME = Object.values(Status);
           <div class="flex-shrink-0">
             <div class="custom-select-wrapper" data-filter="rating">
               <button
-                class="select-button w-full p-2 bg-[#443b37] text-white border border-[#7d6e65] rounded-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[#a77fc5] cursor-pointer"
+                class="select-button w-full p-2 bg-input-bg text-text-primary border border-border-secondary rounded-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-accent-secondary cursor-pointer"
                 aria-haspopup="listbox"
                 aria-expanded="false"
                 aria-controls="rating-listbox"

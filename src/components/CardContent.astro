@@ -57,7 +57,7 @@ if (item.review) {
 ---
 
 <div
-  class="bg-[#655953] p-3 rounded-xl transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1 card-item"
+  class="bg-component-primary p-3 rounded-xl transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1 card-item"
   data-title={item.title}
   data-status={item.status}
   data-year={item.year?.toString()}
@@ -66,7 +66,7 @@ if (item.review) {
   <div class="flex flex-col gap-2">
     {
       item.image && (
-        <div class="aspect-[16/9] w-full overflow-hidden rounded-lg bg-[#4e4138]">
+        <div class="aspect-[16/9] w-full overflow-hidden rounded-lg bg-component-dark">
           {isLocalImage ? (
             <Image
               src={localImages[item.image]()}
@@ -91,16 +91,16 @@ if (item.review) {
     }
 
     <div class="flex flex-col gap-2 py-4">
-      <p class="text-md font-medium text-[#a77fc5]">{item.title}</p>
+      <p class="text-md font-medium text-accent-secondary">{item.title}</p>
 
       {
         item.typeBook && (
           <p class="text-sm opacity-80 flex items-center">
             Type book:
             {item.typeBook === 'audiobook' ? (
-              <AudioBookIcon class="w-5 h-5 text-[#a77fc5]" />
+              <AudioBookIcon class="w-5 h-5 text-accent-secondary" />
             ) : (
-              <BookIcon class="w-5 h-5 text-[#a77fc5]" />
+              <BookIcon class="w-5 h-5 text-accent-secondary" />
             )}
           </p>
         )
@@ -121,7 +121,7 @@ if (item.review) {
             <p class="text-sm mt-1 line-clamp-2">{item.review}</p>
             {item.review.length > 45 && (
               <button
-                class="text-xs mt-2 px-2 py-1 bg-[#4e4138] hover:bg-[#5c4e45] rounded-md text-[#fbf1c7] transition-colors cursor-pointer"
+                class="text-xs mt-2 px-2 py-1 bg-component-dark hover:bg-hover-secondary rounded-md text-text-primary transition-colors cursor-pointer"
                 data-modal-trigger
                 data-modal-target="review-modal"
                 data-modal-content={JSON.stringify(modalData)}

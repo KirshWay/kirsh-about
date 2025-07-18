@@ -25,6 +25,15 @@ export default {
 
         border: 'var(--color-border)',
         'border-hover': 'var(--color-border-hover)',
+
+        /* Colors from vars */
+        'component-dark': 'var(--color-component-dark)',
+        'input-bg': 'var(--color-input-bg)',
+        'border-secondary': 'var(--color-border-secondary)',
+        'hover-secondary': 'var(--color-hover-secondary)',
+        'star-active': 'var(--color-star-active)',
+        'text-gray': 'var(--color-text-gray)',
+        'text-code': 'var(--color-text-code)',
       },
     },
   },
