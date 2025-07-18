@@ -8,11 +8,12 @@ import InfoCard from '@components/InfoCard.astro';
 import Ping from '@components/Ping.astro';
 import Layout from '@layouts/main.astro';
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 
-import { projectList } from '@/data';
 import { Variant } from '@/types';
 
-import type { Project } from '@/types';
+const projectsCollection = await getCollection('projects');
+const projects = projectsCollection.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout content={{ title: 'Kirshway' }}>
@@ -49,13 +50,6 @@ import type { Project } from '@/types';
             >
               Intelsy
             </a>
-
-            <div class="flex items-center">
-              <span class="block h-0.5 bg-foreground w-2"></span>
-              <span
-                class="block w-3 h-3 border-t-2 border-r-2 border-foreground transform rotate-45 -translate-x-1"
-              ></span>
-            </div>
           </div>
         </section>
 
@@ -64,12 +58,12 @@ import type { Project } from '@/types';
 
           <div class="flex flex-col gap-4">
             {
-              projectList.map((project: Project) => (
+              projects.map((project) => (
                 <GithubProjects
-                  name={project.name}
-                  url={project.url}
-                  description={project.description}
-                  tech={project.tech}
+                  name={project.data.name}
+                  description={project.data.description}
+                  url={project.data.url}
+                  tech={project.data.tech}
                 />
               ))
             }
@@ -142,10 +136,6 @@ import type { Project } from '@/types';
                     <Ping variant={Variant.GREEN} />
                     <span>Docker + CI/CD</span>
                   </li>
-                  <li class="flex gap-2 items-center">
-                    <Ping variant={Variant.GREEN} />
-                    <span>Python</span>
-                  </li>
                 </ul>
               </div>
 
@@ -155,11 +145,19 @@ import type { Project } from '@/types';
                 <ul class="flex flex-col gap-2 mt-4">
                   <li class="flex gap-2 items-center">
                     <Ping variant={Variant.GRAY} />
-                    <span>tRPC</span>
+                    <span>Hono.js</span>
                   </li>
                   <li class="flex gap-2 items-center">
                     <Ping variant={Variant.GRAY} />
-                    <span>Hono.js</span>
+                    <span>Three.js</span>
+                  </li>
+                  <li class="flex gap-2 items-center">
+                    <Ping variant={Variant.GRAY} />
+                    <span>React Native</span>
+                  </li>
+                  <li class="flex gap-2 items-center">
+                    <Ping variant={Variant.GRAY} />
+                    <span>Goalng</span>
                   </li>
                 </ul>
               </div>

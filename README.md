@@ -6,46 +6,48 @@
 
 Modern personal website/blog built with Astro and styled with Tailwind CSS.
 
-### 🎨 Features
+### �� Features
 
-- **Fast**: Minimal JavaScript, just static HTML where possible
-- **Modern Design**: Styled with Tailwind CSS
-- **Custom Fonts**: Uses Geist Mono and JetBrains Mono fonts
-- **Responsive**: Displays correctly on devices of any size
-- **GitHub Pages Deployment**: Automatic deployment via GitHub Actions
+- **Fast & Content-Driven**: Built with Astro Content Collections for type-safe, optimized data management.
+- **Modern Design**: Styled with Tailwind CSS.
+- **Custom Fonts**: Uses Geist Mono and JetBrains Mono fonts.
+- **Responsive**: Displays correctly on devices of any size.
+- **GitHub Pages Deployment**: Automatic deployment via GitHub Actions.
 
 ## 📂 Project Structure
 
 ```
 /
-├── .github/           # GitHub Actions configuration
-├── public/            # Static files
+├── .github/              # GitHub Actions configuration
+├── public/               # Static files
 ├── src/
-│   ├── assets/        # Resources processed by the builder (icons, fonts)
-│   ├── components/    # Astro components
-│   ├── constants/     # General constants
-│   ├── data/          # Static data
-│   ├── layouts/       # Layout templates
-│   ├── pages/         # Site pages
-│   ├── styles/        # CSS styles
-│   └── utils/         # Utilities
-└── astro.config.mjs   # Astro configuration
+│   ├── assets/           # Images and icons
+│   ├── components/       # Reusable Astro components
+│   ├── content/          # Astro Content Collections (reviews, projects)
+│   │   └── config.ts     # Collection schemas (Zod)
+│   ├── data/             # Static data (e.g., projectList.ts)
+│   ├── layouts/          # Page layouts
+│   ├── pages/            # Site pages and routes
+│   ├── styles/           # Global CSS styles
+│   ├── types/            # TypeScript type definitions
+│   └── utils/            # Utility functions
+└── astro.config.mjs      # Astro configuration
 ```
 
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
 
-| Command           | Action                                      |
-| :---------------- | :------------------------------------------ |
-| `npm install`     | Installs dependencies                       |
-| `npm run dev`     | Starts local dev server at `localhost:4321` |
-| `npm run build`   | Build your production site to `./dist/`     |
-| `npm run preview` | Preview your build locally before deploying |
+| Command         | Action                                      |
+| :-------------- | :------------------------------------------ |
+| `pnpm install`  | Installs dependencies                       |
+| `pnpm dev`      | Starts local dev server at `localhost:4321` |
+| `pnpm build`    | Build your production site to `./dist/`     |
+| `pnpm preview`  | Preview your build locally before deploying |
 
 ## 🧪 Technologies
 
-- [Astro](https://astro.build)
+- [Astro](https://astro.build) (with Content Collections)
 - [Tailwind CSS](https://tailwindcss.com)
 - [Fontsource](https://fontsource.org/) - for font loading
 - [GitHub Pages](https://pages.github.com/) - for hosting

@@ -1,20 +1,27 @@
 ---
 import { Status } from '@/types';
 
-import type { ListItem, MediaType } from '@/types';
+import type { CollectionEntry } from 'astro:content';
+
+const { items } = Astro.props;
 
 type Props = {
-  items: ListItem[];
-  itemType: MediaType;
+  items: (CollectionEntry<'books'> | CollectionEntry<'games'> | CollectionEntry<'films'>)[];
 };
 
-const { items, itemType } = Astro.props;
-
 const uniqueYears = [
-  ...new Set(items.filter((item) => item.year !== undefined).map((item) => item.year)),
-].sort((a, b) => (b || 0) - (a || 0));
+  ...new Set(
+    items.map((item) => item.data.year).filter((year): year is number => year !== undefined)
+  ),
+].sort((a, b) => b - a);
 
-const STATUS_GAME = Object.values(Status);
+const uniqueRatings = [
+  ...new Set(
+    items.map((item) => item.data.rating).filter((rating): rating is number => rating !== undefined)
+  ),
+].sort((a, b) => b - a);
+
+const Statuses = Object.values(Status);
 ---
 
 <div class="mb-6">
@@ -80,7 +87,7 @@ const STATUS_GAME = Object.values(Status);
                 All statuses
               </li>
               {
-                STATUS_GAME.map((status) => (
+                Statuses.map((status) => (
                   <li
                     class="option cursor-pointer px-4 py-2 hover:bg-hover-secondary hover:text-accent-secondary"
                     data-value={status}
@@ -156,7 +163,7 @@ const STATUS_GAME = Object.values(Status);
       }
 
       {
-        itemType === 'games' && (
+        uniqueRatings.length > 0 && (
           <div class="flex-shrink-0">
             <div class="custom-select-wrapper" data-filter="rating">
               <button
@@ -191,106 +198,18 @@ const STATUS_GAME = Object.values(Status);
                   >
                     All ratings
                   </li>
-                  <li
-                    class="option cursor-pointer px-4 py-2 hover:bg-component-primary hover:text-accent-secondary"
-                    data-value="10"
-                    tabindex="0"
-                    aria-label="Rating 10 out of 10"
-                    role="option"
-                    aria-selected="false"
-                  >
-                    10/10
-                  </li>
-                  <li
-                    class="option cursor-pointer px-4 py-2 hover:bg-component-primary hover:text-accent-secondary"
-                    data-value="9"
-                    tabindex="0"
-                    aria-label="Rating 9 out of 10"
-                    role="option"
-                    aria-selected="false"
-                  >
-                    9/10
-                  </li>
-                  <li
-                    class="option cursor-pointer px-4 py-2 hover:bg-component-primary hover:text-accent-secondary"
-                    data-value="8"
-                    tabindex="0"
-                    aria-label="Rating 8 out of 10"
-                    role="option"
-                    aria-selected="false"
-                  >
-                    8/10
-                  </li>
-                  <li
-                    class="option cursor-pointer px-4 py-2 hover:bg-component-primary hover:text-accent-secondary"
-                    data-value="7"
-                    tabindex="0"
-                    aria-label="Rating 7 out of 10"
-                    role="option"
-                    aria-selected="false"
-                  >
-                    7/10
-                  </li>
-                  <li
-                    class="option cursor-pointer px-4 py-2 hover:bg-component-primary hover:text-accent-secondary"
-                    data-value="6"
-                    tabindex="0"
-                    aria-label="Rating 6 out of 10"
-                    role="option"
-                    aria-selected="false"
-                  >
-                    6/10
-                  </li>
-                  <li
-                    class="option cursor-pointer px-4 py-2 hover:bg-component-primary hover:text-accent-secondary"
-                    data-value="5"
-                    tabindex="0"
-                    aria-label="Rating 5 out of 10"
-                    role="option"
-                    aria-selected="false"
-                  >
-                    5/10
-                  </li>
-                  <li
-                    class="option cursor-pointer px-4 py-2 hover:bg-component-primary hover:text-accent-secondary"
-                    data-value="4"
-                    tabindex="0"
-                    aria-label="Rating 4 out of 10"
-                    role="option"
-                    aria-selected="false"
-                  >
-                    4/10
-                  </li>
-                  <li
-                    class="option cursor-pointer px-4 py-2 hover:bg-component-primary hover:text-accent-secondary"
-                    data-value="3"
-                    tabindex="0"
-                    aria-label="Rating 3 out of 10"
-                    role="option"
-                    aria-selected="false"
-                  >
-                    3/10
-                  </li>
-                  <li
-                    class="option cursor-pointer px-4 py-2 hover:bg-component-primary hover:text-accent-secondary"
-                    data-value="2"
-                    tabindex="0"
-                    aria-label="Rating 2 out of 10"
-                    role="option"
-                    aria-selected="false"
-                  >
-                    2/10
-                  </li>
-                  <li
-                    class="option cursor-pointer px-4 py-2 hover:bg-component-primary hover:text-accent-secondary"
-                    data-value="1"
-                    tabindex="0"
-                    aria-label="Rating 1 out of 10"
-                    role="option"
-                    aria-selected="false"
-                  >
-                    1/10
-                  </li>
+                  {uniqueRatings.map((rating) => (
+                    <li
+                      class="option cursor-pointer px-4 py-2 hover:bg-component-primary hover:text-accent-secondary"
+                      data-value={rating}
+                      tabindex="0"
+                      aria-label={`Rating ${rating} out of 10`}
+                      role="option"
+                      aria-selected="false"
+                    >
+                      {rating}/10
+                    </li>
+                  ))}
                 </ul>
               </div>
               <input type="hidden" id="rating-filter" value="" />

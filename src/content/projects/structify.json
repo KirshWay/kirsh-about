@@ -1,0 +1,13 @@
+{
+  "name": "Structify",
+  "description": "Interactive CLI for documenting & archiving project file structure to Markdown",
+  "url": "https://github.com/KirshWay/structify",
+  "tech": [
+    {
+      "id": "ts",
+      "name": "TypeScript",
+      "color": "blue"
+    }
+  ],
+  "order": 3
+}

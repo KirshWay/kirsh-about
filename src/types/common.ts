@@ -4,10 +4,10 @@ export enum Variant {
   GRAY = 'gray',
   YELLOW = 'yellow',
   BLUE = 'blue',
-  BLACK = 'black',
   LIGHT_BLUE = 'lightBlue',
-  LIGHT_GREEN = 'lightGreen',
+  BLACK = 'black',
   PINK = 'pink',
   RED = 'red',
   ORANGE = 'orange',
+  LIGHT_GREEN = 'lightGreen',
 }

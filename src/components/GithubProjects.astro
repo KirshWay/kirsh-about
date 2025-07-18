@@ -4,7 +4,20 @@ import Ping from '@components/Ping.astro';
 
 import type { Variant } from '@/types';
 
-const { name, url, description, tech } = Astro.props;
+type Tech = {
+  id: string;
+  name: string;
+  color: Variant;
+};
+
+type Props = {
+  name: string;
+  description: string;
+  url: string;
+  tech: Tech[];
+};
+
+const { name, description, url, tech } = Astro.props;
 ---
 
 <a
@@ -24,10 +37,10 @@ const { name, url, description, tech } = Astro.props;
 
     <div class="flex flex-wrap gap-1.5 mt-auto">
       {
-        tech.map((tech: { id: string; name: string; color: Variant }) => (
+        tech.map((techItem) => (
           <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-component-secondary border border-accent-secondary">
-            <Ping variant={tech.color} />
-            <span class="ml-1.5">{tech.name}</span>
+            <Ping variant={techItem.color} />
+            <span class="ml-1.5">{techItem.name}</span>
           </span>
         ))
       }

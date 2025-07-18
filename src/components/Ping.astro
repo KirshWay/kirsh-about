@@ -1,53 +1,54 @@
 ---
-import type { Variant } from '@/types';
+import { Variant } from '@/types';
+
+const { variant } = Astro.props;
+
 type Props = {
   variant: Variant;
 };
 
-const { variant } = Astro.props;
-
 const variantStyles: Record<Variant, { pingBgClass: string; dotBgClass: string }> = {
-  main: {
+  [Variant.MAIN]: {
     pingBgClass: 'bg-[#a77fc5]',
     dotBgClass: 'bg-[#a77fc5]',
   },
-  green: {
+  [Variant.GREEN]: {
     pingBgClass: 'bg-[#72bd85]',
     dotBgClass: 'bg-[#72bd85]',
   },
-  yellow: {
+  [Variant.YELLOW]: {
     pingBgClass: 'bg-[#e9d75a]',
     dotBgClass: 'bg-[#e9d75a]',
   },
-  blue: {
+  [Variant.BLUE]: {
     pingBgClass: 'bg-[#3178C6]',
     dotBgClass: 'bg-[#3178C6]',
   },
-  lightBlue: {
+  [Variant.LIGHT_BLUE]: {
     pingBgClass: 'bg-[#5ebfff]',
     dotBgClass: 'bg-[#5ebfff]',
   },
-  lightGreen: {
+  [Variant.LIGHT_GREEN]: {
     pingBgClass: 'bg-[#38B2AC]',
     dotBgClass: 'bg-[#38B2AC]',
   },
-  black: {
+  [Variant.BLACK]: {
     pingBgClass: 'bg-[#000]',
     dotBgClass: 'bg-[#000]',
   },
-  pink: {
+  [Variant.PINK]: {
     pingBgClass: 'bg-[#E10098]',
     dotBgClass: 'bg-[#E10098]',
   },
-  gray: {
+  [Variant.GRAY]: {
     pingBgClass: 'bg-gray-300',
     dotBgClass: 'bg-gray-300',
   },
-  red: {
+  [Variant.RED]: {
     pingBgClass: 'bg-[#E0234E]',
     dotBgClass: 'bg-[#E0234E]',
   },
-  orange: {
+  [Variant.ORANGE]: {
     pingBgClass: 'bg-[#F05033]',
     dotBgClass: 'bg-[#F05033]',
   },

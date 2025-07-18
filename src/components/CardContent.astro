@@ -9,13 +9,13 @@ import { getUrl } from '@/utils';
 import Ping from './Ping.astro';
 import StarRating from './StarRating.astro';
 
-import type { ListItem } from '@/types';
 import type { ImageMetadata } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 
 const { item, isAboveFold = false }: Props = Astro.props;
 
 type Props = {
-  item: ListItem;
+  item: CollectionEntry<'books'> | CollectionEntry<'games'> | CollectionEntry<'films'>;
   isAboveFold?: boolean;
 };
 
@@ -23,54 +23,53 @@ const localImages = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/images/**/*.{jpeg,jpg,png,gif,webp}'
 );
 
-const isLocalImage = item.image && item.image.startsWith('/src/assets/');
+const isLocalImage = item.data.image && item.data.image.startsWith('/src/assets/');
 
-let imgSrcForStandardTag = item.image;
+let imgSrcForStandardTag = item.data.image;
 
-if (item.image && !isLocalImage && !item.image.startsWith('http')) {
-  imgSrcForStandardTag = getUrl(item.image);
+if (item.data.image && !isLocalImage && !item.data.image.startsWith('http')) {
+  imgSrcForStandardTag = getUrl(item.data.image);
 }
 
 const getVariantByStatus = (status: Status): Variant => {
-  switch (status) {
-    case Status.COMPLETED:
-      return Variant.GREEN;
-    case Status.IN_PROGRESS:
-      return Variant.YELLOW;
-    default:
-      return Variant.GRAY;
+  if (status === Status.COMPLETED) {
+    return Variant.GREEN;
   }
+  if (status === Status.IN_PROGRESS) {
+    return Variant.YELLOW;
+  }
+  return Variant.GRAY;
 };
 
-const badgeVariant = getVariantByStatus(item.status);
+const badgeVariant = getVariantByStatus(item.data.status);
 
 let modalData = {};
 
-if (item.review) {
+if (item.data.review) {
   modalData = {
-    title: item.title,
-    year: item.year,
-    review: item.review,
-    recommendationEmoji: item.recommendationEmoji,
+    title: item.data.title,
+    year: item.data.year,
+    review: item.data.review,
+    recommendationEmoji: item.data.recommendationEmoji,
   };
 }
 ---
 
 <div
   class="bg-component-primary p-3 rounded-xl transition-all duration-200 ease-in-out hover:scale-103 hover:-translate-y-1 card-item"
-  data-title={item.title}
-  data-status={item.status}
-  data-year={item.year?.toString()}
-  data-rating={item.rating?.toString()}
+  data-title={item.data.title}
+  data-status={item.data.status}
+  data-year={item.data.year?.toString()}
+  data-rating={item.data.rating?.toString()}
 >
   <div class="flex flex-col gap-2">
     {
-      item.image && (
+      item.data.image && (
         <div class="aspect-[16/9] w-full overflow-hidden rounded-lg bg-component-dark">
           {isLocalImage ? (
             <Image
-              src={localImages[item.image]()}
-              alt={item.title}
+              src={localImages[item.data.image]()}
+              alt={item.data.title}
               width={300}
               height={169}
               loading={isAboveFold ? 'eager' : 'lazy'}
@@ -79,7 +78,7 @@ if (item.review) {
           ) : (
             <img
               src={imgSrcForStandardTag}
-              alt={item.title}
+              alt={item.data.title}
               width="300"
               height="169"
               loading={isAboveFold ? 'eager' : 'lazy'}
@@ -91,13 +90,13 @@ if (item.review) {
     }
 
     <div class="flex flex-col gap-2 py-4">
-      <p class="text-md font-medium text-accent-secondary">{item.title}</p>
+      <p class="text-md font-medium text-accent-secondary">{item.data.title}</p>
 
       {
-        item.typeBook && (
+        'typeBook' in item.data && (
           <p class="text-sm opacity-80 flex items-center">
             Type book:
-            {item.typeBook === 'audiobook' ? (
+            {item.data.typeBook === 'audiobook' ? (
               <AudioBookIcon class="w-5 h-5 text-accent-secondary" />
             ) : (
               <BookIcon class="w-5 h-5 text-accent-secondary" />
@@ -108,18 +107,18 @@ if (item.review) {
 
       <div class="flex items-center gap-2">
         <Ping variant={badgeVariant} />
-        <p class="text-sm opacity-80">{item.status}</p>
+        <p class="text-sm opacity-80">{item.data.status}</p>
       </div>
 
-      {item.year && <p class="text-sm opacity-80">Year released: {item.year}</p>}
+      {item.data.year && <p class="text-sm opacity-80">Year released: {item.data.year}</p>}
 
-      {item.rating && <StarRating rating={item.rating} />}
+      {item.data.rating && <StarRating rating={item.data.rating} />}
 
       {
-        item.review && (
+        item.data.review && (
           <div>
-            <p class="text-sm mt-1 line-clamp-2">{item.review}</p>
-            {item.review.length > 45 && (
+            <p class="text-sm mt-1 line-clamp-2">{item.data.review}</p>
+            {item.data.review.length > 45 && (
               <button
                 class="text-xs mt-2 px-2 py-1 bg-component-dark hover:bg-hover-secondary rounded-md text-text-primary transition-colors cursor-pointer"
                 data-modal-trigger
@@ -134,9 +133,9 @@ if (item.review) {
       }
 
       {
-        item.recommendationEmoji && (
+        item.data.recommendationEmoji && (
           <div class="mt-4 text-right">
-            <div class="modal-recommendation text-sm">{item.recommendationEmoji}</div>
+            <div class="modal-recommendation text-sm">{item.data.recommendationEmoji}</div>
           </div>
         )
       }
